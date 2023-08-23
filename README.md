@@ -8,6 +8,7 @@
 The task is to give design details namely paths of design data to the "TCL BOX" which is the UI being designed which runs the design in yosys and opentimer opensource eda tools and returns a report of the design.
 
 ![Screenshot (264)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/dcf3a9f9-2281-4d6f-b318-a52ddea1fb7d)
+![Screenshot (265)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/6194ce14-1cf5-41c2-9de3-6938f205f912)
 
 **Review of input file provided in work directory**
 
