@@ -8,7 +8,7 @@
 
 ## Day 1 - Introduction to TCL and VSDSYNTH Toolbox Usage (23/08/2023)
 
-Day 1 task is to create command (in my case yosysui) and pass .csv file from UNIX shell to TCL script taking into consideration mainly 3 general scenarios from user point of view.
+Day 1 task is to create command (in my case ***yosysui***) and pass .csv file from UNIX shell to TCL script taking into consideration mainly 3 general scenarios from user point of view.
 
 ![Screenshot 2023-08-24 183526](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/a1c31fb3-a8e5-4a7e-987d-3d7e6ff4ad65)
 
