@@ -31,7 +31,37 @@ Creation of *yosysui* command script and *yosysui.tcl* files.
 ![Screenshot from 2023-08-24 19-28-08](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/53d902f7-9ec4-4a8f-a2cd-683f74a7ca2f)
 ![Screenshot from 2023-08-24 19-36-52](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c0e5a04d-2d6b-40ea-bcd1-9bd76be60116)
 
-In my command ***yosysui*** I have implemented a total of 5 general scenarios from user point of view in a bash script.
+Basic structure of bash code used for implementation of general scenarios.
+
+```bash
+# Tool Initialisation
+if [ $# -eq 0 ]; then
+	echo "Info: Please provide the csv file"
+	exit 1
+elif [ $# -gt 1 ] && [ $1 != *.csv ]; then
+	echo "Info: Please provide only one csv file"
+	exit 1
+else
+	if [[ $1 != *.csv ]] && [ $1 != "-help" ]; then
+		echo "Info: Please provide a .csv format file"
+		exit 1
+	fi
+fi
+
+if [ ! -e $1 ] || [ $1 == "-help" ]; then
+	if [ $1 != "-help" ]; then
+		echo "Error: Cannot find csv file $1. Exiting..."
+		exit 1
+	else
+		echo "USAGE:  ./yosysui <csv file>"
+	fi
+else
+	echo "Info: csv file $1 accepted"
+	tclsh yosysui.tcl $1
+fi
+```
+
+In my command ***yosysui*** I have implemented a total of 5 general scenarios from user point of view in the bash script.
 
 **1. No input file provided**
 
