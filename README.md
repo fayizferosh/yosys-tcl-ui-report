@@ -1,11 +1,11 @@
 ![Yosys_TCL_UI](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/970d192f-4eee-40b2-b285-51ce1c663677)
 # Yosys TCL UI
 
-5 Day TCL training workshop by VSD using yosys opensource eda tools and TCL to generate a report from a design wherein the input is design file path in .csv format to tcl program.
+5 Day TCL training workshop by VSD using Yosys and Opentimer open-source eda tools and TCL to generate a report from a design wherein the input is design file paths in .csv format to the tcl program.
 
 ## Day 1 - Introduction to TCL and VSDSYNTH Toolbox Usage (23/08/2023)
 
-The task is to give design details namely paths of design data to the "TCL BOX" which is the UI being designed which runs the design in yosys and opentimer opensource eda tools and returns a report of the design.
+The task is to give design details namely paths of design data to the "TCL BOX" which is the UI being designed which runs the design in Yosys and Opentimer open-source eda tools and returns a report of the design.
 
 ![Screenshot (264)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/dcf3a9f9-2281-4d6f-b318-a52ddea1fb7d)
 ![Screenshot (265)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/6194ce14-1cf5-41c2-9de3-6938f205f912)
