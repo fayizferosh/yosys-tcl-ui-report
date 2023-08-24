@@ -12,7 +12,7 @@ Day 1 task is to create command (in my case ***yosysui***) and pass .csv file fr
 
 ![Screenshot 2023-08-24 183526](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/a1c31fb3-a8e5-4a7e-987d-3d7e6ff4ad65)
 
-**Review of input file provided in work directory**
+**Review of input files provided in work directory**
 
 ![Screenshot from 2023-08-23 22-48-19](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/7dd31089-d1a4-44a2-9d31-f828af25e37c)
 
