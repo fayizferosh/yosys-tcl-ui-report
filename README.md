@@ -26,7 +26,7 @@ Day 1 task is to create command (in my case ***yosysui***) and pass .csv file fr
 
 ### Implementation
 
-Creation of yosysui command script and yosysui.tcl file.
+Creation of *yosysui* command script and *yosysui.tcl* files.
 
 ![Screenshot from 2023-08-24 19-28-08](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/53d902f7-9ec4-4a8f-a2cd-683f74a7ca2f)
 ![Screenshot from 2023-08-24 19-36-52](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c0e5a04d-2d6b-40ea-bcd1-9bd76be60116)
