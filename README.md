@@ -81,7 +81,7 @@ In my command ***yosysui*** I have implemented a total of 5 general scenarios fr
 
 ## Day 2 - Variable Creation and Processing Constraints from CSV (24/08/2023)
 
-Day 2 task is to basically write the TCL code in *yosysui.tcl* for variable creation, file/directory existance check and the processing of the constraints csv file to convert it into format[1] (which is the format taken as input by Yosys tool) and as well as into SDC (Synopsys Design Constraints) format (which is the industry standard format).
+Day 2 task is to basically write the TCL code in *yosysui.tcl* for variable creation, file/directory existance check and the processing of the constraints csv file to convert it into format[1] (which is the constraints format taken as input by Yosys tool) and as well as into SDC (Synopsys Design Constraints) format (which is the industry standard format).
 
 ![Screenshot (266)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/43c630e2-0f02-4a38-b5c4-5d61d098ce62)
 
