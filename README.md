@@ -23,3 +23,17 @@ Day 1 task is to create command (in my case yosysui) and pass .csv file from UNI
 **Review of input openMSP430_design_constraints.csv file**
 
 ![Screenshot from 2023-08-23 22-51-48](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c72f9e71-4650-4ead-bb66-d5a1d9cdd53d)
+
+### Implementation
+
+In my command ***yosysui*** I have implemented a total of 5 general scenarios from user point of view in a bash script.
+
+**1. No input file provided**
+
+**2. File provided exists but is not of .csv format**
+
+**3. More than one file or parameters provided**
+
+**4. Provide a .csv file that does not exist**
+
+**5. Type "-help" to find out usage**
