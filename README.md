@@ -16,13 +16,9 @@ Day 1 task is to create command (in my case ***yosysui***) and pass .csv file fr
 
 ![Screenshot from 2023-08-23 22-48-19](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/7dd31089-d1a4-44a2-9d31-f828af25e37c)
 
-**Review of input openMSP430_design_details.csv file**
+**Review of input file - openMSP430_design_details.csv**
 
 ![Screenshot from 2023-08-23 22-29-25](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/de69f8ea-92cc-40e6-b570-e7a364c72c04)
-
-**Review of input openMSP430_design_constraints.csv file**
-
-![Screenshot from 2023-08-23 22-51-48](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c72f9e71-4650-4ead-bb66-d5a1d9cdd53d)
 
 ### Implementation
 
@@ -82,3 +78,15 @@ In my command ***yosysui*** I have implemented a total of 5 general scenarios fr
 **5. Type "-help" to find out usage**
 
 ![Screenshot from 2023-08-24 19-55-32](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/86488924-9fe5-4702-a41d-3916ac7044de)
+
+## Day 2 - Variable Creation and Processing Constraints from CSV (24/08/2023)
+
+Day 2 task is to basically write the TCL code in *yosysui.tcl* for variable creation, file/directory existance check and the processing of the constraints csv file to convert it into format[1] (which is the format taken as input by Yosys tool) and as well as into SDC (Synopsys Design Constraints) format (which is the industry standard format).
+
+![Screenshot (266)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/43c630e2-0f02-4a38-b5c4-5d61d098ce62)
+
+**Review of input file - openMSP430_design_constraints.csv**
+
+![Screenshot from 2023-08-23 22-51-48](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c72f9e71-4650-4ead-bb66-d5a1d9cdd53d)
+
+### Implementation
