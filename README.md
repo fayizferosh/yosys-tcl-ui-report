@@ -50,6 +50,21 @@ if [ ! -e $1 ] || [ $1 == "-help" ]; then
 		exit 1
 	else
 		echo "USAGE:  ./yosysui <csv file>"
+		echo
+		echo "        where <csv file> consists of 2 columns, below keyword being in 1st column and is Case Sensitive. Please request Fayiz for sample csv file."
+		echo
+		echo "        <Design Name> is the name of top level module."
+		echo
+		echo "        <Output Directory> is the name of output directory where you want to dump synthesis script, synthesized netlist and timing reports."
+		echo
+		echo "        <Netlist Directory> is the name of directory where all RTL netlist are present."
+		echo
+		echo "        <Early Library Path> is the file path of the early cell library to be used for STA."
+		echo
+		echo "        <Late Library Path> is file path of the late cell library to be used for STA."
+		echo
+		echo "        <Constraints file> is csv file path of constraints to be used for STA."
+		echo
 	fi
 else
 	echo "Info: csv file $1 accepted"
