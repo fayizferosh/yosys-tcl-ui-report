@@ -105,3 +105,144 @@ Day 2 task is to basically write the TCL code in *yosysui.tcl* for variable crea
 ![Screenshot from 2023-08-23 22-51-48](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c72f9e71-4650-4ead-bb66-d5a1d9cdd53d)
 
 ### Implementation
+
+I have successfully completed Day 2 tasks namely variable creation, file/directory existance check and the processing of the constraints csv file.
+
+**yosysui.tcl snapshot**
+
+![Screenshot from 2023-08-25 23-12-20](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/2320f228-0b66-420d-85ff-80ce3d77bbc8)
+
+**Variable Creation**
+
+I have auto created the variables (have used special condition to identify design name) from the csv file by converting it into a matrix and then to an array. The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
+
+*Code*
+
+```tcl
+# Variable Creation
+# -----------------
+# Setting CLI argument to variable where argv is TCL builtin variable containing CLI arguments as list
+set dcsv [lindex $argv 0]
+
+# csv file ti matrix processing package
+package require csv
+package require struct::matrix
+
+# Initialisation of a matrix "m"
+struct::matrix m
+
+# Opening design details csv to file handler "f"
+set f [open $dcsv]
+
+# Parsing csv data to matrix "m"
+csv::read2matrix $f m , auto
+
+# Closing design details csv
+close $f
+
+# Storing number of rows and columns of matrix to variables
+set ncdcsv [m columns]
+set nrdcsv [m rows]
+
+# Convertion of matrix to array "des_arr(column,row)"
+m link des_arr
+
+# Auto variable creation and data assignment
+set i 0
+while {$i < $nrdcsv} {
+	puts "\nInfo: Setting $des_arr(0,$i) as '$des_arr(1,$i)'"
+	if { ![string match "*/*" $des_arr(1,$i)] && ![string match "*.*" $des_arr(1,$i)] } {
+		set [string map {" " "_"} $des_arr(0,$i)] $des_arr(1,$i)
+	} else {
+		set [string map {" " "_"} $des_arr(0,$i)] [file normalize $des_arr(1,$i)]
+	}
+	set i [expr {$i+1}]
+}
+```
+
+*Screenshot*
+
+![Screenshot from 2023-08-25 23-24-20](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/88934e7b-89f1-4557-a186-cc23816ce5d9)
+
+**File / Directory Existance Check**
+
+I have written the code to check the existance of all files and directories wherein the program exits incase it is not found since, these files and directories existance are crucial for the program to move further except for output directory which is created if not existing. The basic code of the same and screenshots of terminal demonstrating the functionality namely one showing creation od new output directory and another in which output directory exist but constraints file does not exist are shown below.
+
+*Code*
+
+```tcl
+# File/Directory existance check
+# ------------------------------
+# Checking if output directory exists if not creates one
+if { ![file isdirectory $Output_Directory] } {
+	puts "\nInfo: Cannot find output directory $Output_Directory. Creating $Output_Directory"
+	file mkdir $Output_Directory 
+} else {
+	puts "\nInfo: Output directory found in path $Output_Directory"
+}
+
+# Checking if netlist directory exists if not exits
+if { ![file isdirectory $Netlist_Directory] } {
+	puts "\nError: Cannot find RTL netlist directory in path $Netlist_Directory. Exiting..."
+	exit
+} else {
+	puts "\nInfo: RTL netlist directory found in path $Netlist_Directory"
+}
+
+# Checking if early cell library file exists if not exits
+if { ![file exists $Early_Library_Path] } {
+	puts "\nError: Cannot find early cell library in path $Early_Library_Path. Exiting..."
+	exit
+} else {
+	puts "\nInfo: Early cell library found in path $Early_Library_Path"
+}
+
+# Checking if late cell library file exists if not exits
+if { ![file exists $Late_Library_Path] } {
+	puts "\nError: Cannot find late cell library in path $Late_Library_Path. Exiting..."
+	exit
+} else {
+	puts "\nInfo: Late cell library found in path $Late_Library_Path"
+}
+
+# Checking if constraints file exists if not exits
+if { ![file exists $Constraints_File] } {
+	puts "\nError: Cannot find constraints file in path $Constraints_File. Exiting..."
+	exit
+} else {
+	puts "\nInfo: Constraints file found in path $Constraints_File"
+}
+```
+
+*Screenshots*
+
+![Screenshot from 2023-08-25 23-47-49](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/39f36a9a-8b57-46af-961b-ea17af372296)
+![Screenshot from 2023-08-25 23-56-51](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/b0911e12-4739-4e52-9f43-bd8368c4e7e8)
+
+**Processing of the constraints openMSP430_design_constraints.csv file**
+
+The file was successfully processesed and converted into matrix and the rows and columns count were extracted as well as starting rows of clocks, inputs and outputs were also extracted. The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
+
+*Code*
+
+```tcl
+# Constraints csv file data processing for convertion to format[1] and SDC
+# ------------------------------------------------------------------------
+puts "\nInfo: Dumping SDC constraints for $Design_Name"
+::struct::matrix m1
+set f1 [open $Constraints_File]
+csv::read2matrix $f1 m1 , auto
+close $f1
+set nrconcsv [m1 rows]
+set ncconcsv [m1 columns]
+# Finding row number starting for CLOCKS section
+set clocks_start [lindex [lindex [m1 search all CLOCKS] 0] 1]
+# Finding row number starting for INPUTS section
+set inputs_start [lindex [lindex [m1 search all INPUTS] 0] 1]
+# Finding row number starting for OUTPUTS section
+set outputs_start [lindex [lindex [m1 search all OUTPUTS] 0] 1]
+```
+
+*Screenshot*
+
+![Screenshot from 2023-08-26 00-09-40](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/7114a964-971f-46ee-b6a8-831ea83c0145)
