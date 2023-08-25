@@ -1,0 +1,58 @@
+#!/bin/bash
+
+echo
+echo "            _|      _|                                                    _|    _|  _|_|_|"
+echo "              _|  _|    _|_|      _|_|_|  _|    _|    _|_|_|              _|    _|    _|"
+echo "                _|    _|    _|  _|_|      _|    _|  _|_|      _|_|_|_|_|  _|    _|    _|"
+echo "                _|    _|    _|      _|_|  _|    _|      _|_|              _|    _|    _|"
+echo "                _|      _|_|    _|_|_|      _|_|_|  _|_|_|                  _|_|    _|_|_|"
+echo "                                                _|"
+echo "                                            _|_|"
+echo 
+echo "An unique User Interface (UI) that will take RTL netlist & SDC constraints as an input, and will generate"
+echo "sythnesized netlist & pre-layout timing report as an output. It uses Yosys open-source tool for synthesis"
+echo "                        and Opentimer to generate pre-layout timing reports."
+echo "         Developed and Maintained by ASIC VLSI Physical Design Engineer Mohammed Fayiz Ferosh."
+echo "                  For any queries and bugs, please drop a mail to 159fayiz@gmail.com"
+echo
+
+# Tool Initialisation
+if [ $# -eq 0 ]; then
+	echo "Info: Please provide the csv file"
+	exit 1
+elif [ $# -gt 1 ]; then
+	echo "Info: Please provide only one csv file"
+	exit 1
+else
+	if [[ $1 != *.csv ]] && [ $1 != "-help" ]; then
+		echo "Info: Please provide a .csv format file"
+		exit 1
+	fi
+fi
+
+if [ ! -e $1 ] || [ $1 == "-help" ]; then
+	if [ $1 != "-help" ]; then
+		echo "Error: Cannot find csv file $1. Exiting..."
+		exit 1
+	else
+		echo "USAGE:  ./yosysui <csv file>"
+		echo
+		echo "        where <csv file> consists of 2 columns, below keyword being in 1st column and is Case Sensitive. Please request Fayiz for sample csv file."
+		echo
+		echo "        <Design Name> is the name of top level module."
+		echo
+		echo "        <Output Directory> is the name of output directory where you want to dump synthesis script, synthesized netlist and timing reports."
+		echo
+		echo "        <Netlist Directory> is the name of directory where all RTL netlist are present."
+		echo
+		echo "        <Early Library Path> is the file path of the early cell library to be used for STA."
+		echo
+		echo "        <Late Library Path> is file path of the late cell library to be used for STA."
+		echo
+		echo "        <Constraints file> is csv file path of constraints to be used for STA."
+		echo
+	fi
+elif [[ $1 == *.csv ]] && [ $# -eq 1 ]; then
+	echo "Info: csv file $1 accepted"
+	tclsh yosysui.tcl $1
+fi
