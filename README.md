@@ -337,3 +337,9 @@ while { $i < $end_of_clocks } {
 	set i [expr {$i+1}]
 }
 ```
+
+*Screenshots*
+
+![Screenshot from 2023-08-26 23-55-47](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/2cdfc6a3-41ce-4386-8d57-a4c4d891e39c)
+![Screenshot from 2023-08-26 23-56-04](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/806e80b6-4a21-4a6f-b35c-0954092cef2d)
+![Screenshot from 2023-08-26 23-55-01](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/289108e2-fb13-4194-a4a7-529ce3c05aa4)
