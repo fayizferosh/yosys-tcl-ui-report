@@ -265,4 +265,7 @@ set outputs_start [lindex [lindex [m1 search all OUTPUTS] 0] 1]
 
 *Screenshot*
 
+<!---
 ![Screenshot from 2023-08-26 00-09-40](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/7114a964-971f-46ee-b6a8-831ea83c0145)
+-->
+![Screenshot from 2023-08-26 23-12-07](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/ea0b3f15-f7bd-488e-bf47-b70331cbec1e)
