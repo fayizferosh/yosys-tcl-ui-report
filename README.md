@@ -284,7 +284,7 @@ I have successfully completed Day 3 tasks namely processing constraints csv file
 
 **Processing of the constraints .csv file for CLOCKS and dumping SDC commands to .sdc**
 
-I have successfully processed the csv file for CLOCKS data and dumped clock based SDC commands (with unique clock names) to .sdc file.  The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc  are shown below.
+I have successfully processed the csv file for CLOCKS data and dumped clock based SDC commands (with unique clock names) to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
 
 *Code*
 
@@ -343,3 +343,85 @@ while { $i < $end_of_clocks } {
 ![Screenshot from 2023-08-26 23-55-47](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/2cdfc6a3-41ce-4386-8d57-a4c4d891e39c)
 ![Screenshot from 2023-08-26 23-56-04](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/806e80b6-4a21-4a6f-b35c-0954092cef2d)
 ![Screenshot from 2023-08-26 23-55-01](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/289108e2-fb13-4194-a4a7-529ce3c05aa4)
+
+**Processing of the constraints .csv file for INPUTS and dumping SDC commands to .sdc**
+
+I have successfully processed the csv file for INPUTS data as well as differentiated bit and bus inputs and dumped inputs based SDC commands to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
+
+*Code*
+
+```tcl
+# INPUTS section
+# Finding column number starting for input clock latency in INPUTS section only
+set inputs_erd_start_column [lindex [lindex [m1 search rect $clocks_start_column $inputs_start [expr {$ncconcsv-1}] [expr {$outputs_start-1}] early_rise_delay] 0 ] 0 ]
+set inputs_efd_start_column [lindex [lindex [m1 search rect $clocks_start_column $inputs_start [expr {$ncconcsv-1}] [expr {$outputs_start-1}] early_fall_delay] 0 ] 0 ]
+set inputs_lrd_start_column [lindex [lindex [m1 search rect $clocks_start_column $inputs_start [expr {$ncconcsv-1}] [expr {$outputs_start-1}] late_rise_delay] 0 ] 0 ]
+set inputs_lfd_start_column [lindex [lindex [m1 search rect $clocks_start_column $inputs_start [expr {$ncconcsv-1}] [expr {$outputs_start-1}] late_fall_delay] 0 ] 0 ]
+
+# Finding column number starting for input clock transition in INPUTS section only
+set inputs_ers_start_column [lindex [lindex [m1 search rect $clocks_start_column $inputs_start [expr {$ncconcsv-1}] [expr {$outputs_start-1}] early_rise_slew] 0 ] 0 ]
+set inputs_efs_start_column [lindex [lindex [m1 search rect $clocks_start_column $inputs_start [expr {$ncconcsv-1}] [expr {$outputs_start-1}] early_fall_slew] 0 ] 0 ]
+set inputs_lrs_start_column [lindex [lindex [m1 search rect $clocks_start_column $inputs_start [expr {$ncconcsv-1}] [expr {$outputs_start-1}] late_rise_slew] 0 ] 0 ]
+set inputs_lfs_start_column [lindex [lindex [m1 search rect $clocks_start_column $inputs_start [expr {$ncconcsv-1}] [expr {$outputs_start-1}] late_fall_slew] 0 ] 0 ]
+
+# Finding column number starting for input related clock in INPUTS section only
+set inputs_rc_start_column [lindex [lindex [m1 search rect $clocks_start_column $inputs_start [expr {$ncconcsv-1}] [expr {$outputs_start-1}] clocks] 0 ] 0 ]
+
+# Setting variables for actual input row start and end
+set i [expr {$inputs_start+1}]
+set end_of_inputs [expr {$outputs_start-1}]
+
+puts "\nInfo-SDC: Working on input constraints....."
+puts "\nInfo-SDC: Categorizing input ports as bits and bussed"
+
+# while loop to write constraint commands to .sdc file
+while { $i < $end_of_inputs } {
+	# Checking if input is bussed or not
+	set netlist [glob -dir $Netlist_Directory *.v]
+	set tmp_file [open /tmp/1 w]
+	foreach f $netlist {
+		set fd [open $f]
+		while { [gets $fd line] != -1 } {
+			set pattern1 " [m1 get cell 0 $i];"
+			if { [regexp -all -- $pattern1 $line] } {
+				set pattern2 [lindex [split $line ";"] 0]
+				if { [regexp -all {input} [lindex [split $pattern2 "\S+"] 0]] } {
+					set s1 "[lindex [split $pattern2 "\S+"] 0] [lindex [split $pattern2 "\S+"] 1] [lindex [split $pattern2 "\S+"] 2]"
+					puts -nonewline $tmp_file "\n[regsub -all {\s+} $s1 " "]"
+				}
+			}
+		}
+	close $fd
+	}
+	close $tmp_file
+	set tmp_file [open /tmp/1 r]
+	set tmp2_file [open /tmp/2 w]
+	puts -nonewline $tmp2_file "[join [lsort -unique [split [read $tmp_file] \n]] \n]"
+	close $tmp_file
+	close $tmp2_file
+	set tmp2_file [open /tmp/2 r]
+	set count [llength [read $tmp2_file]]
+	if {$count > 2} {
+		set inp_ports [concat [m1 get cell 0 $i]*]
+	} else {
+		set inp_ports [m1 get cell 0 $i]
+	}
+
+	# set_input_transition SDC command to set input transition values
+	puts -nonewline $sdc_file "\nset_input_transition -clock \[get_clocks [m1 get cell $inputs_rc_start_column $i]\] -min -rise -source_latency_included [m1 get cell $inputs_ers_start_column $i] \[get_ports $inp_ports\]"
+	puts -nonewline $sdc_file "\nset_input_transition -clock \[get_clocks [m1 get cell $inputs_rc_start_column $i]\] -min -fall -source_latency_included [m1 get cell $inputs_efs_start_column $i] \[get_ports $inp_ports\]"
+	puts -nonewline $sdc_file "\nset_input_transition -clock \[get_clocks [m1 get cell $inputs_rc_start_column $i]\] -max -rise -source_latency_included [m1 get cell $inputs_lrs_start_column $i] \[get_ports $inp_ports\]"
+	puts -nonewline $sdc_file "\nset_input_transition -clock \[get_clocks [m1 get cell $inputs_rc_start_column $i]\] -max -fall -source_latency_included [m1 get cell $inputs_lfs_start_column $i] \[get_ports $inp_ports\]"
+
+	# set_input_delay SDC command to set input latency values
+	puts -nonewline $sdc_file "\nset_input_delay -clock \[get_clocks [m1 get cell $inputs_rc_start_column $i]\] -min -rise -source_latency_included [m1 get cell $inputs_erd_start_column $i] \[get_ports $inp_ports\]"
+	puts -nonewline $sdc_file "\nset_input_delay -clock \[get_clocks [m1 get cell $inputs_rc_start_column $i]\] -min -fall -source_latency_included [m1 get cell $inputs_efd_start_column $i] \[get_ports $inp_ports\]"
+	puts -nonewline $sdc_file "\nset_input_delay -clock \[get_clocks [m1 get cell $inputs_rc_start_column $i]\] -max -rise -source_latency_included [m1 get cell $inputs_lrd_start_column $i] \[get_ports $inp_ports\]"
+	puts -nonewline $sdc_file "\nset_input_delay -clock \[get_clocks [m1 get cell $inputs_rc_start_column $i]\] -max -fall -source_latency_included [m1 get cell $inputs_lfd_start_column $i] \[get_ports $inp_ports\]"
+
+	set i [expr {$i+1}]
+}
+```
+
+*Screenshots*
+
