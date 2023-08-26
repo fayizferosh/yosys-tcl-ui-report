@@ -90,7 +90,7 @@ else
 fi
 ```
 
-In my command ***yosysui*** I have implemented a total of 5 general scenarios from user point of view in the bash script.
+In my command ***yosysui*** I have implemented a total of *5 general scenarios* from user point of view in the bash script.
 
 **1. No input file provided**
 
@@ -132,7 +132,7 @@ I have successfully completed Day 2 tasks namely variable creation, file/directo
 
 **Variable Creation**
 
-I have auto created the variables (have used special condition to identify design name) from the csv file by converting it into a matrix and then to an array. The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
+I have auto created the variables (*have used special condition to identify design name*) from the csv file by converting it into a matrix and then to an array. The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
 
 *Code*
 
@@ -284,7 +284,7 @@ I have successfully completed Day 3 tasks namely processing constraints csv file
 
 **Processing of the constraints .csv file for CLOCKS and dumping SDC commands to .sdc**
 
-I have successfully processed the csv file for CLOCKS data and dumped clock based SDC commands (with unique clock names) to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
+I have successfully processed the csv file for CLOCKS data and dumped clock based SDC commands (*with unique clock names adding "_yui" to SDC create_clock command*) to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
 
 *Code*
 
