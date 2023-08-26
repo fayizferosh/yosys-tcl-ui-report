@@ -275,3 +275,65 @@ set outputs_start [lindex [lindex [m1 search all OUTPUTS] 0] 1]
 Day 3 task is to basically processing constraints csv file for clocks and inputs and dupming SDC commands to .sdc file with actual processed data. It involves several matrix search algorithms and also an algorithm to identify inputs which are buses and bits differently.
 
 **Review of input file - openMSP430_design_constraints.csv**
+
+![Screenshot from 2023-08-26 23-29-38](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/58f22f6a-b861-4b32-917c-fed1268c19b0)
+
+### Implementation
+
+I have successfully completed Day 3 tasks namely processing constraints csv file for clocks and inputs and dupming SDC commands to .sdc file with actual processed data.
+
+**Processing of the constraints .csv file for CLOCKS and dumping SDC commands to .sdc**
+
+I have successfully processed the csv file for CLOCKS data and dumped clock based SDC commands to .sdc file.  The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc  are shown below.
+
+*Code*
+
+```tcl
+# Convertion of constraints csv file to SDC
+# -----------------------------------------
+# CLOCKS section
+# Finding column number starting for clock latency in CLOCKS section only
+set clocks_erd_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] early_rise_delay] 0 ] 0 ]
+set clocks_efd_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] early_fall_delay] 0 ] 0 ]
+set clocks_lrd_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] late_rise_delay] 0 ] 0 ]
+set clocks_lfd_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] late_fall_delay] 0 ] 0 ]
+
+# Finding column number starting for clock transition in CLOCKS section only
+set clocks_ers_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] early_rise_slew] 0 ] 0 ]
+set clocks_efs_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] early_fall_slew] 0 ] 0 ]
+set clocks_lrs_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] late_rise_slew] 0 ] 0 ]
+set clocks_lfs_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] late_fall_slew] 0 ] 0 ]
+
+# Finding column number starting for frequency and duty cycle in CLOCKS section only
+set clocks_freq_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] frequency] 0 ] 0 ]
+set clocks_dc_start_column [lindex [lindex [m1 search rect $clocks_start_column $clocks_start [expr {$ncconcsv-1}] [expr {$inputs_start-1}] duty_cycle] 0 ] 0 ]
+
+# Creating .sdc file with design name in output directory and opening it in write mode
+set sdc_file [open $Output_Directory/$Design_Name.sdc "w"]
+
+# Setting variables for actual clock row start and end
+set i [expr {$clocks_start+1}]
+set end_of_clocks [expr {$inputs_start-1}]
+
+puts "\nInfo-SDC: Working on clock constraints....."
+
+# while loop to write constraint commands to .sdc file
+while { $i < $end_of_clocks } {
+	# create_clock SDC command to create clocks
+	puts -nonewline $sdc_file "\ncreate_clock -name [concat [m1 get cell 0 $i]_yui] -period [m1 get cell $clocks_freq_start_column $i] -waveform \{0 [expr {[m1 get cell $clocks_freq_start_column $i]*[m1 get cell $clocks_dc_start_column $i]/100}]\} \[get_ports [m1 get cell 0 $i]\]"
+
+	# set_clock_transition SDC command to set clock transition values
+	puts -nonewline $sdc_file "\nset_clock_transition -min -rise [m1 get cell $clocks_ers_start_column $i] \[get_clocks [m1 get cell 0 $i]\]"
+	puts -nonewline $sdc_file "\nset_clock_transition -min -fall [m1 get cell $clocks_efs_start_column $i] \[get_clocks [m1 get cell 0 $i]\]"
+	puts -nonewline $sdc_file "\nset_clock_transition -max -rise [m1 get cell $clocks_lrs_start_column $i] \[get_clocks [m1 get cell 0 $i]\]"
+	puts -nonewline $sdc_file "\nset_clock_transition -max -fall [m1 get cell $clocks_lfs_start_column $i] \[get_clocks [m1 get cell 0 $i]\]"
+
+	# set_clock_latency SDC command to set clock latency values
+	puts -nonewline $sdc_file "\nset_clock_latency -source -early -rise [m1 get cell $clocks_erd_start_column $i] \[get_clocks [m1 get cell 0 $i]\]"
+	puts -nonewline $sdc_file "\nset_clock_latency -source -early -fall [m1 get cell $clocks_efd_start_column $i] \[get_clocks [m1 get cell 0 $i]\]"
+	puts -nonewline $sdc_file "\nset_clock_latency -source -late -rise [m1 get cell $clocks_lrd_start_column $i] \[get_clocks [m1 get cell 0 $i]\]"
+	puts -nonewline $sdc_file "\nset_clock_latency -source -late -fall [m1 get cell $clocks_lfd_start_column $i] \[get_clocks [m1 get cell 0 $i]\]"
+
+	set i [expr {$i+1}]
+}
+```
