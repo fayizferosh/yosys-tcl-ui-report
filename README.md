@@ -269,3 +269,9 @@ set outputs_start [lindex [lindex [m1 search all OUTPUTS] 0] 1]
 ![Screenshot from 2023-08-26 00-09-40](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/7114a964-971f-46ee-b6a8-831ea83c0145)
 -->
 ![Screenshot from 2023-08-26 23-12-07](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/ea0b3f15-f7bd-488e-bf47-b70331cbec1e)
+
+## Day 3 - Processing Clock and Input Constraints from CSV and dumping SDC (26/08/2023)
+
+Day 3 task is to basically processing constraints csv file for clocks and inputs and dupming SDC commands to .sdc file with actual processed data. It involves several matrix search algorithms and also an algorithm to identify inputs which are buses and bits differently.
+
+**Review of input file - openMSP430_design_constraints.csv**
