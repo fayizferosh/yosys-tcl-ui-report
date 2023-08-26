@@ -255,6 +255,8 @@ set nrconcsv [m1 rows]
 set ncconcsv [m1 columns]
 # Finding row number starting for CLOCKS section
 set clocks_start [lindex [lindex [m1 search all CLOCKS] 0] 1]
+# Finding column number starting for CLOCKS section
+set clocks_start_column [lindex [lindex [m1 search all CLOCKS] 0] 0]
 # Finding row number starting for INPUTS section
 set inputs_start [lindex [lindex [m1 search all INPUTS] 0] 1]
 # Finding row number starting for OUTPUTS section
