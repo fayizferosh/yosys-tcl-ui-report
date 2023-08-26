@@ -284,7 +284,7 @@ I have successfully completed Day 3 tasks namely processing constraints csv file
 
 **Processing of the constraints .csv file for CLOCKS and dumping SDC commands to .sdc**
 
-I have successfully processed the csv file for CLOCKS data and dumped clock based SDC commands to .sdc file.  The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc  are shown below.
+I have successfully processed the csv file for CLOCKS data and dumped clock based SDC commands (with unique clock names) to .sdc file.  The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc  are shown below.
 
 *Code*
 
