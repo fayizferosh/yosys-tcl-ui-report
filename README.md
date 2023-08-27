@@ -401,6 +401,7 @@ while { $i < $end_of_inputs } {
 	close $tmp2_file
 	set tmp2_file [open /tmp/2 r]
 	set count [llength [read $tmp2_file]]
+	close $tmp2_file
 	if {$count > 2} {
 		set inp_ports [concat [m1 get cell 0 $i]*]
 	} else {
