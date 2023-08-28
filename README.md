@@ -603,7 +603,7 @@ After second rising edge of the clock - read process done
 
 ![Screenshot (275)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/ab0a4c9c-fd2b-48ee-b9ff-d068c2bdfbf1)
 
-#### Hierarchy Check script dumping
+#### Hierarchy check script dumping
 
 I have successfully written the code for dumping hierarchy check script. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .hier.ys are shown below.
 
