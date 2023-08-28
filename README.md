@@ -132,11 +132,14 @@ I have successfully completed Day 2 tasks namely variable creation, file/directo
 
 **Variable Creation**
 
-I have auto created the variables (*have used special condition to identify design name*) from the csv file by converting it into a matrix and then to an array. The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
+I have auto created the variables (*have used special condition to identify design name*) from the csv file by converting it into a matrix and then to an array (*also added command to capture start time of script so that it can be used to calculate runtime at the end*). The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
 
 *Code*
 
 ```tcl
+# Capturing start time of the script
+set start_time [clock clicks -microseconds]
+
 # Variable Creation
 # -----------------
 # Setting CLI argument to variable where argv is TCL builtin variable containing CLI arguments as list
