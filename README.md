@@ -575,7 +575,7 @@ The output view of netlist from the code is shown below.
 
 ![Screenshot (267)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/82137c89-b8f5-4b98-996b-e7e6fe6516a1)
 
-*Memory write process explained in images using truth table*
+*Memory write process explained in following images using truth table*
 
 Basic illustration of write process
 
@@ -589,7 +589,7 @@ After first rising edge of the clock - write process done
 
 ![Screenshot (273)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/f6d57546-e60e-4cfe-bf20-601d5962d000)
 
-*Memory read process explained in images using truth table*
+*Memory read process explained in following images using truth table*
 
 Basic illustration of read process
 
