@@ -92,23 +92,23 @@ fi
 
 In my command ***yosysui*** I have implemented a total of *5 general scenarios* from user point of view in the bash script.
 
-**1. No input file provided**
+#### 1. No input file provided
 
 ![Screenshot from 2023-08-24 19-39-50](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/cb679d28-e0de-448a-ad2a-5d31031d2f8b)
 
-**2. File provided exists but is not of .csv format**
+#### 2. File provided exists but is not of .csv format
 
 ![Screenshot from 2023-08-24 19-41-41](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/45653ab6-96be-49f1-8af2-afcce1ee0392)
 
-**3. More than one file or parameters provided**
+#### 3. More than one file or parameters provided
 
 ![Screenshot from 2023-08-24 19-53-06](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/8ad5345c-1fa8-4432-b618-b5a0bd5f3934)
 
-**4. Provide a .csv file that does not exist**
+#### 4. Provide a .csv file that does not exist
 
 ![Screenshot from 2023-08-24 19-54-26](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/96ee26cd-43ed-4056-a1ac-c42a5207542a)
 
-**5. Type "-help" to find out usage**
+#### 5. Type "-help" to find out usage
 
 ![Screenshot from 2023-08-24 19-55-32](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/86488924-9fe5-4702-a41d-3916ac7044de)
 
@@ -130,7 +130,7 @@ I have successfully completed Day 2 tasks namely variable creation, file/directo
 
 ![Screenshot from 2023-08-25 23-12-20](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/2320f228-0b66-420d-85ff-80ce3d77bbc8)
 
-**Variable Creation**
+#### Variable Creation
 
 I have auto created the variables (*have used special condition to identify design name*) from the csv file by converting it into a matrix and then to an array (*also added command to capture start time of script so that it can be used to calculate runtime at the end*). The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
 
@@ -185,7 +185,7 @@ while {$i < $nrdcsv} {
 
 ![Screenshot from 2023-08-25 23-24-20](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/88934e7b-89f1-4557-a186-cc23816ce5d9)
 
-**File / Directory Existance Check**
+#### File / Directory Existance Check
 
 I have written the code to check the existance of all files and directories wherein the program exits incase it is not found since, these files and directories existance are crucial for the program to move further except for output directory which is created if not existing. The basic code of the same and screenshots of terminal demonstrating the functionality namely one showing creation od new output directory and another in which output directory exist but constraints file does not exist are shown below.
 
@@ -240,7 +240,7 @@ if { ![file exists $Constraints_File] } {
 ![Screenshot from 2023-08-25 23-47-49](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/39f36a9a-8b57-46af-961b-ea17af372296)
 ![Screenshot from 2023-08-25 23-56-51](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/b0911e12-4739-4e52-9f43-bd8368c4e7e8)
 
-**Processing of the constraints openMSP430_design_constraints.csv file**
+#### Processing of the constraints openMSP430_design_constraints.csv file
 
 The file was successfully processesed and converted into matrix and the rows and columns count were extracted as well as starting rows of clocks, inputs and outputs were also extracted. The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
 
@@ -285,7 +285,7 @@ Day 3 task is to basically processing constraints csv file for clocks and inputs
 
 I have successfully completed Day 3 tasks namely processing constraints csv file for clocks and inputs and dupming SDC commands to .sdc file with actual processed data.
 
-**Processing of the constraints .csv file for CLOCKS and dumping SDC commands to .sdc**
+#### Processing of the constraints .csv file for CLOCKS and dumping SDC commands to .sdc
 
 I have successfully processed the csv file for CLOCKS data and dumped clock based SDC commands (*with unique clock names adding "_yui" to SDC create_clock command*) to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
 
@@ -347,7 +347,7 @@ while { $i < $end_of_clocks } {
 ![Screenshot from 2023-08-26 23-56-04](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/806e80b6-4a21-4a6f-b35c-0954092cef2d)
 ![Screenshot from 2023-08-26 23-55-01](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/289108e2-fb13-4194-a4a7-529ce3c05aa4)
 
-**Processing of the constraints .csv file for INPUTS and dumping SDC commands to .sdc**
+#### Processing of the constraints .csv file for INPUTS and dumping SDC commands to .sdc
 
 I have successfully processed the csv file for INPUTS data as well as differentiated bit and bus inputs and dumped inputs based SDC commands to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
 
@@ -443,7 +443,7 @@ Day 4 task included the outputs section processing and dumping of SDC file, samp
 
 I have successfully completed Day 4 tasks namely processing constraints csv file for outputs and dupming SDC commands to .sdc file with actual processed data, learned sample memory synthesis and it's memory write and read process, dumped hierarchy check yosys script and wrote code handling errors in herarchy check.
 
-**Processing of the constraints .csv file for OUTPUTS and dumping SDC commands to .sdc**
+#### Processing of the constraints .csv file for OUTPUTS and dumping SDC commands to .sdc
 
 I have successfully processed the csv file for OUTPUTS data as well as differentiated bit and bus outputs and dumped outputs based SDC commands to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
 
@@ -522,7 +522,7 @@ puts "\nInfo-SDC: SDC created. Please use constraints in path $Output_Directory/
 
 *Screenshots*
 
-**Memory module yosys synthesis and explanation**
+#### Memory module yosys synthesis and explanation
 
 The verilog code *memory.v* for a single bit address and single bit data memory unit is given below.
 
@@ -603,7 +603,7 @@ After second rising edge of the clock - read process done
 
 ![Screenshot (275)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/ab0a4c9c-fd2b-48ee-b9ff-d068c2bdfbf1)
 
-**Hierarchy Check script dumping**
+#### Hierarchy Check script dumping
 
 I have successfully written the code for dumping hierarchy check script. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .hier.ys are shown below.
 
@@ -627,7 +627,7 @@ close $fileId
 
 *Screenshots*
 
-**Hierarchy Check Run & Error Handling**
+#### Hierarchy Check Run & Error Handling
 
 I have successfully written the code for hierarchy check error handling in case any error pops up during hierarchy check run in yosys and *exits if hierarchy check fails*. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
 
