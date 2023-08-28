@@ -603,7 +603,7 @@ After second rising edge of the clock - read process done
 
 ![Screenshot (275)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/ab0a4c9c-fd2b-48ee-b9ff-d068c2bdfbf1)
 
-**Hierarchy Check**
+**Hierarchy Check script dumping**
 
 I have successfully written the code for dumping hierarchy check script. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .hier.ys are shown below.
 
@@ -627,7 +627,7 @@ close $fileId
 
 *Screenshots*
 
-**Hierarchy Check Error Handling**
+**Hierarchy Check Run & Error Handling**
 
 I have successfully written the code for hierarchy check error handling in case any error pops up during hierarchy check run in yosys and *exits if hierarchy check fails*. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
 
