@@ -429,3 +429,231 @@ while { $i < $end_of_inputs } {
 ![Screenshot from 2023-08-27 00-15-11](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/19e7ccfe-3fc0-4b91-b9da-f09910570204)
 ![Screenshot from 2023-08-27 00-16-01](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c93a1551-c951-4714-9ac2-c974b9425b99)
 ![Screenshot from 2023-08-27 00-14-56](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/e73aee2d-a63b-4937-89ff-d7d7d21b1abe)
+
+## Day 4 - Complete Scripting and Yosys Synthesis Introduction (26/08/2023)
+
+Day 4 task included the outputs section processing and dumping of SDC file, sample yosys synthesis using example memory and explanation, yosys hierarchy check and it's error handling.
+
+**Review of input file - openMSP430_design_constraints.csv**
+
+### Implementation
+
+I have successfully completed Day 4 tasks namely processing constraints csv file for outputs and dupming SDC commands to .sdc file with actual processed data, learned sample memory synthesis and it's memory write and read process, dumped hierarchy check yosys script and wrote code handling errors in herarchy check.
+
+**Processing of the constraints .csv file for OUTPUTS and dumping SDC commands to .sdc**
+
+I have successfully processed the csv file for OUTPUTS data as well as differentiated bit and bus outputs and dumped outputs based SDC commands to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
+
+*Code*
+
+```tcl
+# OUTPUTS section
+# Finding column number starting for output clock latency in OUTPUTS section only
+set outputs_erd_start_column [lindex [lindex [m1 search rect $clocks_start_column $outputs_start [expr {$ncconcsv-1}] [expr {$nrconcsv-1}] early_rise_delay] 0 ] 0 ]
+set outputs_efd_start_column [lindex [lindex [m1 search rect $clocks_start_column $outputs_start [expr {$ncconcsv-1}] [expr {$nrconcsv-1}] early_fall_delay] 0 ] 0 ]
+set outputs_lrd_start_column [lindex [lindex [m1 search rect $clocks_start_column $outputs_start [expr {$ncconcsv-1}] [expr {$nrconcsv-1}] late_rise_delay] 0 ] 0 ]
+set outputs_lfd_start_column [lindex [lindex [m1 search rect $clocks_start_column $outputs_start [expr {$ncconcsv-1}] [expr {$nrconcsv-1}] late_fall_delay] 0 ] 0 ]
+
+# Finding column number starting for output related clock in OUTPUTS section only
+set outputs_rc_start_column [lindex [lindex [m1 search rect $clocks_start_column $outputs_start [expr {$ncconcsv-1}] [expr {$nrconcsv-1}] clocks] 0 ] 0 ]
+
+# Finding column number starting for output load in OUTPUTS section only
+set outputs_load_start_column [lindex [lindex [m1 search rect $clocks_start_column $outputs_start [expr {$ncconcsv-1}] [expr {$nrconcsv-1}] load] 0 ] 0 ]
+
+# Setting variables for actual input row start and end
+set i [expr {$outputs_start+1}]
+set end_of_outputs [expr {$nrconcsv-1}]
+
+puts "\nInfo-SDC: Working on output constraints....."
+puts "\nInfo-SDC: Categorizing output ports as bits and bussed"
+
+# while loop to write constraint commands to .sdc file
+while { $i < $end_of_outputs } {
+	# Checking if input is bussed or not
+	set netlist [glob -dir $Netlist_Directory *.v]
+	set tmp_file [open /tmp/1 w]
+	foreach f $netlist {
+		set fd [open $f]
+		while { [gets $fd line] != -1 } {
+			set pattern1 " [m1 get cell 0 $i];"
+			if { [regexp -all -- $pattern1 $line] } {
+				set pattern2 [lindex [split $line ";"] 0]
+				if { [regexp -all {output} [lindex [split $pattern2 "\S+"] 0]] } {
+					set s1 "[lindex [split $pattern2 "\S+"] 0] [lindex [split $pattern2 "\S+"] 1] [lindex [split $pattern2 "\S+"] 2]"
+					puts -nonewline $tmp_file "\n[regsub -all {\s+} $s1 " "]"
+				}
+			}
+		}
+	close $fd
+	}
+	close $tmp_file
+	set tmp_file [open /tmp/1 r]
+	set tmp2_file [open /tmp/2 w]
+	puts -nonewline $tmp2_file "[join [lsort -unique [split [read $tmp_file] \n]] \n]"
+	close $tmp_file
+	close $tmp2_file
+	set tmp2_file [open /tmp/2 r]
+	set count [llength [read $tmp2_file]]
+	close $tmp2_file
+	if {$count > 2} {
+		set op_ports [concat [m1 get cell 0 $i]*]
+	} else {
+		set op_ports [m1 get cell 0 $i]
+	}
+
+	# set_output_delay SDC command to set output latency values
+	puts -nonewline $sdc_file "\nset_output_delay -clock \[get_clocks [m1 get cell $outputs_rc_start_column $i]\] -min -rise -source_latency_included [m1 get cell $outputs_erd_start_column $i] \[get_ports $op_ports\]"
+	puts -nonewline $sdc_file "\nset_output_delay -clock \[get_clocks [m1 get cell $outputs_rc_start_column $i]\] -min -fall -source_latency_included [m1 get cell $outputs_efd_start_column $i] \[get_ports $op_ports\]"
+	puts -nonewline $sdc_file "\nset_output_delay -clock \[get_clocks [m1 get cell $outputs_rc_start_column $i]\] -max -rise -source_latency_included [m1 get cell $outputs_lrd_start_column $i] \[get_ports $op_ports\]"
+	puts -nonewline $sdc_file "\nset_output_delay -clock \[get_clocks [m1 get cell $outputs_rc_start_column $i]\] -max -fall -source_latency_included [m1 get cell $outputs_lfd_start_column $i] \[get_ports $op_ports\]"
+
+	# set_load SDC command to set load values
+	puts -nonewline $sdc_file "\nset_load [m1 get cell $outputs_load_start_column $i] \[get_ports $op_ports\]"
+
+	set i [expr {$i+1}]
+}
+
+close $sdc_file
+puts "\nInfo-SDC: SDC created. Please use constraints in path $Output_Directory/$Design_Name.sdc"
+```
+
+*Screenshots*
+
+**Memory module yosys synthesis and explanation**
+
+The verilog code *memory.v* for a single bit address and single bit data memory unit is given below.
+
+*Code*
+
+```verilog
+module memory (CLK, ADDR, DIN, DOUT);
+
+parameter wordSize = 1;
+parameter addressSize = 1;
+
+input ADDR, CLK;
+input [wordSize-1:0] DIN;
+output reg [wordSize-1:0] DOUT;
+reg [wordSize:0] mem [0:(1<<addressSize)-1];
+
+always @(posedge CLK) begin
+	mem[ADDR] <= DIN;
+	DOUT <= mem[ADDR];
+	end
+
+endmodule
+```
+
+The basic yosys script *memory.ys* to run this and obtain a gate-level netlist and 2D representation of the memory module in gate components is provided below.
+
+*Script*
+
+```tcl
+# Reding the library
+read_liberty -lib -ignore_miss_dir -setattr blackbox /home/kunalg/Desktop/work/openmsp430/openmsp430/osu018_stdcells.lib
+# Reading the verilog
+read_verilog memory.v
+synth top memory
+splitnets -ports -format ____
+dfflibmap -liberty /home/kunalg/Desktop/work/openmsp430/openmsp430/osu018_stdcells.lib
+opt
+abc -liberty /home/kunalg/Desktop/work/openmsp430/openmsp430/osu018_stdcells.lib
+flatten
+clean -purge
+opt
+clean
+# Writing the netlist
+write_verilog memory_synth.v
+# Representation of netlist with it's components
+show
+```
+
+The output view of netlist from the code is shown below.
+
+![Screenshot (267)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/82137c89-b8f5-4b98-996b-e7e6fe6516a1)
+
+*Memory write process explained in images using truth table*
+
+Basic illustration of write process
+
+![Screenshot (268)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/44d4b869-a861-41c6-90a0-4d2e9a0ff38c)
+
+Before first rising edge of the clock
+
+![Screenshot (272)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/7c1cbdc0-ccbe-4010-ae5d-2af6317d7459)
+
+After first rising edge of the clock - write process done
+
+![Screenshot (273)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/f6d57546-e60e-4cfe-bf20-601d5962d000)
+
+*Memory read process explained in images using truth table*
+
+Basic illustration of read process
+
+![Screenshot (269)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/2dff99ae-b568-4b7a-93ac-78cfa112a9ed)
+
+After first rising edge and before second rising edge of the clock
+
+![Screenshot (274)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/4940be06-9546-4652-908d-44cd96050d6a)
+
+After second rising edge of the clock - read process done
+
+![Screenshot (275)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/ab0a4c9c-fd2b-48ee-b9ff-d068c2bdfbf1)
+
+**Hierarchy Check**
+
+I have successfully written the code for dumping hierarchy check script. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .hier.ys are shown below.
+
+*Code*
+
+```tcl
+# Hierarchy Check
+# ---------------
+puts "\nInfo: Creating hierarchy check script to be used by Yosys"
+set data "read_liberty -lib -ignore_miss_dir -setattr blackbox ${Late_Library_Path}"
+set filename "$Design_Name.hier.ys"
+set fileId [open $Output_Directory/$filename "w"]
+puts -nonewline $fileId $data
+set netlist [glob -dir $Netlist_Directory *.v]
+foreach f $netlist {
+	puts -nonewline $fileId "\nread_verilog $f"
+}
+puts -nonewline $fileId "\nhierarchy -check"
+close $fileId
+```
+
+*Screenshots*
+
+**Hierarchy Check Error Handling**
+
+I have successfully written the code for hierarchy check error handling in case any error pops up during hierarchy check run in yosys and *exits if hierarchy check fails*. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
+
+*Code*
+
+```tcl
+# Hierarchy check error handling
+# Running hierarchy check in yosys by dumping log to log file and catching execution message
+set error_flag [catch {exec yosys -s $Output_Directory/$Design_Name.hier.ys >& $Output_Directory/$Design_Name.hierarchy_check.log} msg]
+if { $error_flag } {
+	set filename "$Output_Directory/$Design_Name.hierarchy_check.log"
+	# EDA tool specific hierarchy error search pattern
+	set pattern {referenced in module}
+	set count 0
+	set fid [open $filename r]
+	while { [gets $fid line] != -1 } {
+		incr count [regexp -all -- $pattern $line]
+		if { [regexp -all -- $pattern $line] } {
+			puts "\nError: Module [lindex $line 2] is not part of design $Design_Name. Please correct RTL in the path '$Netlist_Directory'"
+			puts "\nInfo: Hierarchy check FAIL"
+		}
+	}
+	close $fid
+	puts "\nInfo: Please find hierarchy check details in '[file normalize $Output_Directory/$Design_Name.hierarchy_check.log]' for more info. Exiting..."
+	exit
+} else {
+	puts "\nInfo: Hierarchy check PASS"
+	puts "\nInfo: Please find hierarchy check details in '[file normalize $Output_Directory/$Design_Name.hierarchy_check.log]' for more info"
+}
+```
+
+*Screenshots*
