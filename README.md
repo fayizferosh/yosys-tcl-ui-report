@@ -557,7 +557,7 @@ read_liberty -lib -ignore_miss_dir -setattr blackbox /home/kunalg/Desktop/work/o
 # Reading the verilog
 read_verilog memory.v
 synth top memory
-splitnets -ports -format ____
+splitnets -ports -format ___
 dfflibmap -liberty /home/kunalg/Desktop/work/openmsp430/openmsp430/osu018_stdcells.lib
 opt
 abc -liberty /home/kunalg/Desktop/work/openmsp430/openmsp430/osu018_stdcells.lib
