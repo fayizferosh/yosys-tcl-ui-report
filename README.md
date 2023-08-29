@@ -26,10 +26,10 @@ Comments
 
 ## Requirements
 
--Linux OS
--Yosys Synthesis Suite
--OpenTimer STA Tool
--TCL Matrix Package
+- Linux OS
+- Yosys Synthesis Suite
+- OpenTimer STA Tool
+- TCL Matrix Package
 
 ## Usage
 
