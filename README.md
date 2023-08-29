@@ -26,7 +26,7 @@ Comments
 
 ## Usage
 
-Clone the repo and in the directory in bash terminal run `./yosysui openMSP430_design_details.csv` and the design 'openMSP430' Yosys synthesis and OpenTimer STA will be run and at the end you will recieve '***PRELAYOUT TIMING RESULTS***' as illustrated in above images.
+Clone the repo and in the directory in bash terminal run `./yosysui openMSP430_design_details.csv` and then design '*openMSP430*' Yosys synthesis and OpenTimer STA will be run and at the end you will recieve '*PRELAYOUT TIMING RESULTS*' as illustrated in above images.
 
 ## Day 1 - Introduction to TCL and VSDSYNTH Toolbox Usage (23/08/2023)
 
