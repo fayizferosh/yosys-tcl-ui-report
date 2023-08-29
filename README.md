@@ -727,3 +727,31 @@ puts "\nInfo: Please refer to log $Output_Directory/$Design_Name.synthesis.log"
 *Screenshots*
 screen log for both pass and fail
 
+#### Editing .synth.v to be usable by OpenTimer
+
+I have successfully written the code to edit the main synthesis output netlist .synth.v to make it usable for OpenTimer and other STA and PnR needs by replacing lines with "*" as a word and by removing "\" from any and all lines that have it. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
+
+*Code*
+
+```tcl
+# Editing .synth.v to be usable by Opentimer
+# ------------------------------------------
+set fileId [open /tmp/1 "w"]
+puts -nonewline $fileId [exec grep -v -w "*" $Output_Directory/$Design_Name.synth.v]
+close $fileId
+set output [open $Output_Directory/$Design_Name.final.synth.v "w"]
+set filename "/tmp/1"
+set fid [open $filename r]
+while { [gets $fid line] != -1 } {
+	puts -nonewline $output [string map {"\\" ""} $line]
+	puts -nonewline $output "\n"
+}
+close $fid
+close $output
+puts "\nInfo: Please find the synthesized netlist for $Design_Name at below path. You can use this netlist for STA or PNR"
+puts "\nPath: $Output_Directory/$Design_Name.final.synth.v"
+```
+
+*Screenshots*
+screen log and /tmp/1 and .final.synth.v
+
