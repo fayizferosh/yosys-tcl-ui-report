@@ -730,7 +730,6 @@ puts "\nInfo: Synthesis script created and can be accessed from path $Output_Dir
 
 *Screenshots*
 
-screen log and .ys file
 ![Screenshot from 2023-08-29 16-21-48](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/8ff84ce4-26af-4a01-93b4-d435bbfd767c)
 ![Screenshot from 2023-08-29 16-22-21](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/83af9314-c349-45cb-bde2-be5d6035d3a1)
 ![Screenshot from 2023-08-29 16-22-40](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/82881cc7-b27f-4a39-a04b-f5dfdd847649)
@@ -757,7 +756,9 @@ puts "\nInfo: Please refer to log $Output_Directory/$Design_Name.synthesis.log"
 
 *Screenshots*
 
-screen log for both pass and fail .log file
+![Screenshot from 2023-08-29 16-31-45](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/fd204cbb-9a76-4a4b-a0c9-e2bf0924396b)
+![Screenshot from 2023-08-29 16-35-18](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c5df53d3-c644-43c5-9f07-f84215615487)
+![Screenshot from 2023-08-29 16-36-16](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/8ca12680-9570-4cbb-a69d-662f3d31705d)
 
 #### Editing .synth.v to be usable by OpenTimer
 
@@ -786,7 +787,10 @@ puts "\nPath: $Output_Directory/$Design_Name.final.synth.v"
 
 *Screenshots*
 
-screen log and /tmp/1 and .final.synth.v
+![Screenshot from 2023-08-29 16-40-59](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/df6c6458-b390-4a5a-957a-a516e9917042)
+![Screenshot from 2023-08-29 16-45-19](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/6995d59c-89fb-460f-9aa1-0ba99ffa55e3)
+![Screenshot from 2023-08-29 16-45-38](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/13c74231-6309-4e7c-9291-d7debabdd5f8)
+![Screenshot from 2023-08-29 16-46-26](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/8f1f5555-58b9-4053-af9f-aa1b075c6446)
 
 #### World of Procs (TCL Procedure)
 
@@ -838,7 +842,7 @@ proc set_multi_cpu_usage {args} {
 
 *Screenshots*
 
-screen log of run multiple images
+![Screenshot from 2023-08-29 16-53-58](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/21a2a36c-c1d8-43d8-88b3-a01954c890d8)
 
 ##### read_lib.proc
 
@@ -937,7 +941,8 @@ close $tmp_file
 
 *Screenshots*
 
-/tmp/1 and /tmp/3
+![Screenshot from 2023-08-29 17-11-08](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/328687aa-0faa-41dd-8d9c-df4a8c504711)
+![Screenshot from 2023-08-29 17-11-40](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/4e63234f-c254-4c1c-8574-0d5570ce55b0)
 
 ###### Converting 'set_clock_latency' constraints
 
@@ -973,7 +978,8 @@ close $tmp2_file
 
 *Screenshots*
 
-/tmp/2 and /tmp/3
+![Screenshot from 2023-08-29 17-23-07](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/768611ac-19fc-4fa5-8f12-31c26085682b)
+![Screenshot from 2023-08-29 17-23-57](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/ee297383-a993-4623-9ada-f31b01be1239)
 
 ###### Converting 'set_clock_transition' constraints
 
@@ -1009,7 +1015,8 @@ close $tmp2_file
 
 *Screenshots*
 
-/tmp/2 and /tmp/3
+![Screenshot from 2023-08-29 17-25-25](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/0ef0d12c-1add-4504-9fd2-4b805af5a8e1)
+![Screenshot from 2023-08-29 17-25-45](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/4e4dcd61-1b03-422f-8ff0-bf6a778e4acc)
 
 ###### Converting 'set_input_delay' constraints
 
@@ -1044,7 +1051,8 @@ close $tmp2_file
 
 *Screenshots*
 
-/tmp/2 and /tmp/3
+![Screenshot from 2023-08-29 17-27-29](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/b19e68f3-57a1-42d4-90fc-ed2a9e058158)
+![Screenshot from 2023-08-29 17-27-43](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/10003b27-2e09-45bf-9bee-da0d0ef6bd50)
 
 ###### Converting 'set_input_transition' constraints
 
@@ -1080,7 +1088,8 @@ close $tmp2_file
 
 *Screenshots*
 
-/tmp/2 and /tmp/3
+![Screenshot from 2023-08-29 17-29-37](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/956c7538-92c0-49b6-9fce-5cd6d418dd41)
+![Screenshot from 2023-08-29 17-29-58](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/da17d4f2-4855-4a23-81fd-566500f29926)
 
 ###### Converting 'set_output_delay' constraints
 
@@ -1116,7 +1125,8 @@ close $tmp2_file
 
 *Screenshots*
 
-/tmp/2 and /tmp/3
+![Screenshot from 2023-08-29 17-31-42](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/42b174e7-dc05-42ae-ba7e-390986e49f3d)
+![Screenshot from 2023-08-29 17-32-11](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/49185da9-2642-4b6a-a24a-c12fc8ef1548)
 
 ###### Converting 'set_load' constraints
 
@@ -1154,7 +1164,8 @@ close $timing_file
 
 *Screenshots*
 
-/tmp/2 and /tmp/3
+![Screenshot from 2023-08-29 17-43-58](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/9540204e-8cc1-4438-8cf7-6848f7f1a02a)
+![Screenshot from 2023-08-29 17-44-25](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/42b14a5f-3de4-4b02-89b4-c6219cb232f5)
 
 ###### Expanding the bussed input and output ports
 
@@ -1193,7 +1204,9 @@ puts "set_timing_fpath $sdc_dirname/$sdc_filename.timing"
 
 *Screenshots*
 
-/tmp/3 and .timing files
+![Screenshot from 2023-08-29 17-49-32](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/7836a33e-dc40-4c7a-bc60-74408ef15260)
+![Screenshot from 2023-08-29 17-51-29](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/483ee333-38f4-4047-a2dc-d8e7b9c2c833)
+![Screenshot from 2023-08-29 17-52-01](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/5c76e83e-6855-4d13-bad8-a662da9ff265)
 
 #### Using the procs to write .conf
 
@@ -1228,7 +1241,10 @@ close $Output_Directory/$Design_Name.conf
 
 *Screenshots*
 
-screenlog and .conf
+![Screenshot from 2023-08-29 18-18-15](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/59692da1-15c3-4f26-9b16-d994df79433f)
+![Screenshot from 2023-08-29 18-18-33](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/4265a870-cd60-4061-8f29-c5ac29fbb5f7)
+![Screenshot from 2023-08-29 18-18-42](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/29ccd10a-42e5-43aa-9222-f540e08db139)
+![Screenshot from 2023-08-29 18-19-19](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/da7f3c0c-85aa-4fa0-99fe-d2bcd39b7aa9)
 
 #### Preparation of rest of .conf & .spef files for OpenTimer STA
 
