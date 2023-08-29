@@ -438,6 +438,7 @@ while { $i < $end_of_inputs } {
 Day 4 task included the outputs section processing and dumping of SDC file, sample yosys synthesis using example memory and explanation, yosys hierarchy check and it's error handling.
 
 **Review of input file - openMSP430_design_constraints.csv**
+img of outputs section only
 
 ### Implementation
 
@@ -521,6 +522,7 @@ puts "\nInfo-SDC: SDC created. Please use constraints in path $Output_Directory/
 ```
 
 *Screenshots*
+full command output multiple images
 
 #### Memory module yosys synthesis and explanation
 
@@ -626,6 +628,7 @@ close $fileId
 ```
 
 *Screenshots*
+screen log and .hier.ys script
 
 #### Hierarchy Check Run & Error Handling
 
@@ -660,6 +663,7 @@ if { $error_flag } {
 ```
 
 *Screenshots*
+screen log for pass and fail
 
 ## Day 5 - Advanced Scripting Techniques and Quality of Results Generation (27/08/2023)
 
@@ -668,3 +672,58 @@ Day 5 task is to run main synthesis in yosys, learn about procs and use it in an
 ### Implementation
 
 I have sucessfully coded all the required elements to achieve Day 5 tasks and all the details of sub-task achieved are shown below.
+
+#### Main yosys synthesis script dumping
+
+I have successfully written the code for main yosys synthesis script .ys file and dumped the script. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
+
+*Code*
+
+```tcl
+# Main Synthesis Script
+# ---------------------
+puts "\nInfo: Creating main synthesis script to be used by Yosys"
+set data "read_liberty -lib -ignore_miss_dir -setattr blackbox ${Late_Library_Path}"
+set filename "$Design_Name.ys"
+set fileId [open $Output_Directory/$filename "w"]
+puts -nonewline $fileId $data
+set netlist [glob -dir $Netlist_Directory *.v]
+foreach f $netlist {
+	puts -nonewline $fileId "\nread_verilog $f"
+}
+puts -nonewline $fileId "\nhierarchy -top $Design_Name"
+puts -nonewline $fileId "\nsynth -top $Design_Name"
+puts -nonewline $fileId "\nsplitnets -ports -format ___\ndfflibmap -liberty ${Late_Library_Path} \nopt"
+puts -nonewline $fileId "\nabc -liberty ${Late_Library_Path}"
+puts -nonewline $fileId "\nflatten"
+puts -nonewline $fileId "\nclean -purge\niopadmap -outpad BUFX2 A:Y -bits\nopt\nclean"
+puts -nonewline $fileId "\nwrite_verilog $Output_Directory/$Design_Name.synth.v"
+close $fileId
+puts "\nInfo: Synthesis script created and can be accessed from path $Output_Directory/$Design_Name.ys"
+```
+
+*Screenshots*
+screen log and .ys file
+
+#### Running main synthesis script & error handling
+
+I have successfully written the code for running main yosys synthesis script and exiting if errors are found. The basic code of the same and screenshots of terminal are shown below.
+
+*Code*
+
+```tcl
+puts "\nInfo: Running synthesis..........."
+# Main synthesis error handling
+# Running main synthesis in yosys by dumping log to log file and catching execution message
+if { [catch {exec yosys -s $Output_Directory/$Design_Name.ys >& $Output_Directory/$Design_Name.synthesis.log} msg] } {
+	puts "\nError: Synthesis failed due to errors. Please refer to log $Output_Directory/$Design_Name.synthesis.log for errors. Exiting...."
+	exit
+} else {
+	puts "\nInfo: Synthesis finished successfully"
+}
+puts "\nInfo: Please refer to log $Output_Directory/$Design_Name.synthesis.log"
+```
+
+*Screenshots*
+screen log for both pass and fail
+
