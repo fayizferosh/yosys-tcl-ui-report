@@ -433,7 +433,7 @@ while { $i < $end_of_inputs } {
 ![Screenshot from 2023-08-27 00-16-01](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c93a1551-c951-4714-9ac2-c974b9425b99)
 ![Screenshot from 2023-08-27 00-14-56](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/e73aee2d-a63b-4937-89ff-d7d7d21b1abe)
 
-/tmp/1 and /tmp/2 file screenshots for bussed port
+/tmp/1 and /tmp/2 file screenshots for bit port
 
 ![Screenshot from 2023-08-29 15-47-50](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/626396d2-fb93-47e7-931f-e75546397972)
 ![Screenshot from 2023-08-29 15-47-30](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/8c27a27e-7693-4017-9f35-52e35ee59dde)
@@ -450,7 +450,7 @@ Day 4 task included the outputs section processing and dumping of SDC file, samp
 
 **Review of input file - openMSP430_design_constraints.csv**
 
-img of outputs section only
+![Screenshot from 2023-08-29 15-51-51](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/a0251a70-a667-4c03-99cb-430d0cec1ef8)
 
 ### Implementation
 
@@ -535,7 +535,12 @@ puts "\nInfo-SDC: SDC created. Please use constraints in path $Output_Directory/
 
 *Screenshots*
 
-full command output multiple images and /tmp/1 and /tmp/2 and sdc file outputs section
+![Screenshot from 2023-08-29 15-55-10](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/8fd704f2-c0c7-480f-99d0-d88cd64d445c)
+![Screenshot from 2023-08-29 15-56-02](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/e2679927-2b37-4028-854a-27672a078dc5)
+![Screenshot from 2023-08-29 15-56-18](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/f999bb4f-09a5-4983-8519-2614206ee2f4)
+![Screenshot from 2023-08-29 15-57-13](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c6f188ac-4fba-46cc-bebd-166a78226cb3)
+
+/tmp/1 and /tmp/2 similar to input ports
 
 #### Memory module yosys synthesis and explanation
 
@@ -642,7 +647,10 @@ close $fileId
 
 *Screenshots*
 
-screen log and .hier.ys script
+![Screenshot from 2023-08-29 16-02-41](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/a035dbe3-9271-4d9d-a7d4-56a6f962fdaf)
+![Screenshot from 2023-08-29 16-03-08](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/531faa6f-e51d-4ff5-a289-9eb39240db04)
+![Screenshot from 2023-08-29 16-03-26](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/6bcd71ba-1063-4d38-b822-78af29e8aa94)
+![Screenshot from 2023-08-29 16-04-58](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/98b04685-79dc-44b2-9ba4-c400db8548d6)
 
 #### Hierarchy Check Run & Error Handling
 
@@ -678,9 +686,12 @@ if { $error_flag } {
 
 *Screenshots*
 
-screen log for pass and fail and log file
+![Screenshot from 2023-08-29 16-10-14](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/bbf9a540-8836-4d2d-84b5-b29586d7f340)
+![Screenshot from 2023-08-29 16-10-54](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c8588d8f-4003-4496-be2f-11043647f3b2)
+![Screenshot from 2023-08-29 16-13-12](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/028cb5d6-0324-4e08-844f-062cd8dc7505)
+![Screenshot from 2023-08-29 16-14-22](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/7d0f3e55-95a1-421d-a099-cb13b330c4f2)
 
-## Day 5 - Advanced Scripting Techniques and Quality of Results Generation (27/08/2023)
+## Day 5 - Advanced Scripting Techniques and Quality of Results (QoR) Generation (27/08/2023)
 
 Day 5 task is to run main synthesis in yosys, learn about procs and use it in an application level creating commands, write necesserary files required for OpenTimer tool such as .conf - .spef - .timing, write OpenTimer script, run OpenTimer STA, collect required data to form QoR from .results file generated from OpenTimer STA run & finally print the collected data in a tool standard QoR output format.
 
@@ -720,6 +731,10 @@ puts "\nInfo: Synthesis script created and can be accessed from path $Output_Dir
 *Screenshots*
 
 screen log and .ys file
+![Screenshot from 2023-08-29 16-21-48](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/8ff84ce4-26af-4a01-93b4-d435bbfd767c)
+![Screenshot from 2023-08-29 16-22-21](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/83af9314-c349-45cb-bde2-be5d6035d3a1)
+![Screenshot from 2023-08-29 16-22-40](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/82881cc7-b27f-4a39-a04b-f5dfdd847649)
+![Screenshot from 2023-08-29 16-23-16](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/6273dd9c-4ef4-4e9a-beb7-f7e6a0606943)
 
 #### Running main synthesis script & error handling
 
