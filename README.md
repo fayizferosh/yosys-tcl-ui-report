@@ -24,6 +24,10 @@ Comments
 ![Screenshot (264)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/dcf3a9f9-2281-4d6f-b318-a52ddea1fb7d)
 ![Screenshot (265)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/6194ce14-1cf5-41c2-9de3-6938f205f912)
 
+## Usage
+
+Clone the repo and in the directory in bash terminal run `./yosysui openMSP430_design_details.csv` and the design 'openMSP430' Yosys synthesis and OpenTimer STA will be run and at the end you will recieve '***PRELAYOUT TIMING RESULTS***' as illustrated in above images.
+
 ## Day 1 - Introduction to TCL and VSDSYNTH Toolbox Usage (23/08/2023)
 
 Day 1 task is to create command (in my case ***yosysui***) and pass .csv file from UNIX shell to TCL script taking into consideration mainly 3 general scenarios from user point of view.
