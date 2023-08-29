@@ -1263,7 +1263,7 @@ if {$enable_prelayout_timing == 1} {
 	set spef_file [open $Output_Directory/$Design_Name.spef w]
 	puts $spef_file "*SPEF \"IEEE 1481-1998\" "
 	puts $spef_file "*DESIGN \"$Design_Name\" "
-	puts $spef_file "*DATE \"[clock format [clock seconds] -format {%a %b %d %I:%M:%S %p %Y}]\" "
+	puts $spef_file "*DATE \"[clock format [clock seconds] -format {%a %b %d %I:%M:%S %Y}]\" "
 	puts $spef_file "*VENDOR \"TAU 2015 Contest\" "
 	puts $spef_file "*PROGRAM \"Benchmark Parasitic Generator\" "
 	puts $spef_file "*VERSION \"0.0\" "
@@ -1281,16 +1281,21 @@ if {$enable_prelayout_timing == 1} {
 # Appending to .conf file
 set conf_file [open $Output_Directory/$Design_Name.conf a]
 puts $conf_file "set_spef_fpath $Output_Directory/$Design_Name.spef"
-puts $conf_file "init timer "
+puts $conf_file "init_timer "
 puts $conf_file "report_timer "
 puts $conf_file "report_wns "
-puts $conf_file "report_worst paths -numPaths 10000 "
+puts $conf_file "report_worst_paths -numPaths 10000 "
 close $conf_file
 ```
 
 *Screenshots*
 
-screenlog and .spef and .conf
+![Screenshot from 2023-08-29 18-47-51](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/f1b2f647-be3e-4efe-a094-8932067b264d)
+![Screenshot from 2023-08-29 18-49-01](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/6f14f6a6-6a5a-4967-aa8b-bf7f7514a507)
+![Screenshot from 2023-08-29 19-23-02](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/14233d49-fa1a-43be-95da-4f68e3002c7d)
+<!---
+![Screenshot from 2023-08-29 18-49-34](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/bc1a6e67-1962-4412-ade9-3519e78efb97)
+-->
 
 #### STA using OpenTimer
 
@@ -1302,6 +1307,7 @@ I have successfully written the code to run STA on OpenTimer and to capture its 
 # Static Timing Analysis using OpenTimer
 # --------------------------------------
 # Running STA on OpenTimer and dumping log to .results and capturing runtime
+set tcl_precision 3
 set time_elapsed_in_us [time {exec /home/kunalg/Desktop/tools/opentimer/OpenTimer-1.0.5/bin/OpenTimer < $Output_Directory/$Design_Name.conf >& $Output_Directory/$Design_Name.results}]
 set time_elapsed_in_sec "[expr {[lindex $time_elapsed_in_us 0]/1000000}]sec"
 puts "\nInfo: STA finished in $time_elapsed_in_sec seconds"
@@ -1310,7 +1316,12 @@ puts "\nInfo: Refer to $Output_Directory/$Design_Name.results for warnings and e
 
 *Screenshots*
 
-screenlog and .log file
+![Screenshot from 2023-08-29 19-25-37](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/f1494ffb-bdfb-4e85-bb48-6a323c4babd2)
+![Screenshot from 2023-08-29 19-26-43](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/4e8d4d2b-1f96-4822-9257-58e37a66593f)
+<!---
+![Screenshot from 2023-08-29 19-00-18](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/32eaa113-437c-40b9-b08e-ca4e1b263acb)
+![Screenshot from 2023-08-29 19-00-58](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/094ed944-018c-4428-bc1f-f95cdc425e05)
+-->
 
 #### Data collection from .results file and other sources for QoR
 
@@ -1410,7 +1421,7 @@ set time_elapsed_in_sec "[expr {($end_time-$start_time)/1000000}]sec"
 
 *Screenshots*
 
-screenlog
+![Screenshot from 2023-08-29 19-37-06](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/d8186e62-3030-4d0e-a545-887415b77563)
 
 #### QoR (Quality of Results) Generation
 
@@ -1435,4 +1446,6 @@ puts "\n"
 
 *Screenshots*
 
-screenlog
+![Screenshot from 2023-08-29 19-47-24](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/36f9a31d-56e8-4fdb-9fd1-231bbd11800a)
+![Screenshot from 2023-08-29 19-47-53](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/2f937ddf-ef8d-46ea-8e08-15272fab4944)
+![Screenshot from 2023-08-29 19-48-16](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/630a39fe-710e-44aa-85d5-29f19e833734)
