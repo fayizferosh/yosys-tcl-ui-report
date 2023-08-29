@@ -1,0 +1,183 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.29+44 (git sha1 88c849d11, clang 6.0.0-1ubuntu2 -fPIC -Os)
+
+
+-- Executing script file `/home/vsduser/vsdsynth/outdir_openMSP430/openMSP430.hier.ys' --
+
+1. Executing Liberty frontend: /home/vsduser/vsdsynth/osu018_stdcells.lib
+Imported 32 cell types from liberty file.
+
+2. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/openMSP430.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/openMSP430.v' to AST representation.
+Generating RTLIL representation for module `\openMSP430'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_execution_unit.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_execution_unit.v' to AST representation.
+Generating RTLIL representation for module `\omsp_execution_unit'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_dbg_hwbrk.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_dbg_hwbrk.v' to AST representation.
+Generating RTLIL representation for module `\omsp_dbg_hwbrk'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_mem_backbone.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_mem_backbone.v' to AST representation.
+Generating RTLIL representation for module `\omsp_mem_backbone'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_scan_mux.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_scan_mux.v' to AST representation.
+Generating RTLIL representation for module `\omsp_scan_mux'.
+Successfully finished Verilog frontend.
+
+7. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_multiplier.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_multiplier.v' to AST representation.
+Generating RTLIL representation for module `\omsp_multiplier'.
+Successfully finished Verilog frontend.
+
+8. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_sfr.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_sfr.v' to AST representation.
+Generating RTLIL representation for module `\omsp_sfr'.
+Successfully finished Verilog frontend.
+
+9. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_alu.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_alu.v' to AST representation.
+Generating RTLIL representation for module `\omsp_alu'.
+Successfully finished Verilog frontend.
+
+10. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_register_file.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_register_file.v' to AST representation.
+Generating RTLIL representation for module `\omsp_register_file'.
+Successfully finished Verilog frontend.
+
+11. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/openMSP430_undefines.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/openMSP430_undefines.v' to AST representation.
+Successfully finished Verilog frontend.
+
+12. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_dbg.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_dbg.v' to AST representation.
+Generating RTLIL representation for module `\omsp_dbg'.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_dbg.v:240.1-278.10 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_dbg.v:746.1-756.10 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Successfully finished Verilog frontend.
+
+13. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_clock_module.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_clock_module.v' to AST representation.
+Generating RTLIL representation for module `\omsp_clock_module'.
+Successfully finished Verilog frontend.
+
+14. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_dbg_i2c.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_dbg_i2c.v' to AST representation.
+Generating RTLIL representation for module `\omsp_dbg_i2c'.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_dbg_i2c.v:239.1-270.10 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_dbg_i2c.v:357.1-391.10 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Successfully finished Verilog frontend.
+
+15. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_and_gate.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_and_gate.v' to AST representation.
+Generating RTLIL representation for module `\omsp_and_gate'.
+Successfully finished Verilog frontend.
+
+16. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_watchdog.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_watchdog.v' to AST representation.
+Generating RTLIL representation for module `\omsp_watchdog'.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_watchdog.v:512.1-518.12 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Successfully finished Verilog frontend.
+
+17. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_clock_gate.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_clock_gate.v' to AST representation.
+Generating RTLIL representation for module `\omsp_clock_gate'.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_clock_gate.v:76.1-78.31 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Successfully finished Verilog frontend.
+
+18. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_frontend.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_frontend.v' to AST representation.
+Generating RTLIL representation for module `\omsp_frontend'.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_frontend.v:254.1-273.12 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_frontend.v:691.1-723.6 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_frontend.v:742.1-751.6 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_frontend.v:768.1-787.6 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_frontend.v:879.1-910.12 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Successfully finished Verilog frontend.
+
+19. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_sync_reset.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_sync_reset.v' to AST representation.
+Generating RTLIL representation for module `\omsp_sync_reset'.
+Successfully finished Verilog frontend.
+
+20. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/openMSP430_defines.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/openMSP430_defines.v' to AST representation.
+Successfully finished Verilog frontend.
+
+21. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_clock_mux.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_clock_mux.v' to AST representation.
+Generating RTLIL representation for module `\omsp_clock_mux'.
+Successfully finished Verilog frontend.
+
+22. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_wakeup_cell.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_wakeup_cell.v' to AST representation.
+Generating RTLIL representation for module `\omsp_wakeup_cell'.
+Successfully finished Verilog frontend.
+
+23. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_sync_cell.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_sync_cell.v' to AST representation.
+Generating RTLIL representation for module `\omsp_sync_cell'.
+Successfully finished Verilog frontend.
+
+24. Executing Verilog-2005 frontend: /home/vsduser/vsdsynth/verilog/omsp_dbg_uart.v
+Parsing Verilog input from `/home/vsduser/vsdsynth/verilog/omsp_dbg_uart.v' to AST representation.
+Generating RTLIL representation for module `\omsp_dbg_uart'.
+Note: Assuming pure combinatorial block at /home/vsduser/vsdsynth/verilog/omsp_dbg_uart.v:160.1-181.10 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Successfully finished Verilog frontend.
+
+25. Executing HIERARCHY pass (managing design hierarchy).
+
+End of script. Logfile hash: 5290e2bc85, CPU: user 0.13s system 0.05s, MEM: 24.19 MB peak
+Yosys 0.29+44 (git sha1 88c849d11, clang 6.0.0-1ubuntu2 -fPIC -Os)
+Time spent: 96% 46x read_verilog (0 sec), 2% 2x read_liberty (0 sec), ...

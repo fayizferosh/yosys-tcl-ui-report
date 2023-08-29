@@ -1,0 +1,25 @@
+read_liberty -lib -ignore_miss_dir -setattr blackbox /home/vsduser/vsdsynth/osu018_stdcells.lib
+read_verilog /home/vsduser/vsdsynth/verilog/openMSP430.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_execution_unit.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_dbg_hwbrk.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_mem_backbone.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_scan_mux.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_multiplier.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_sfr.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_alu.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_register_file.v
+read_verilog /home/vsduser/vsdsynth/verilog/openMSP430_undefines.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_dbg.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_clock_module.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_dbg_i2c.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_and_gate.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_watchdog.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_clock_gate.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_frontend.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_sync_reset.v
+read_verilog /home/vsduser/vsdsynth/verilog/openMSP430_defines.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_clock_mux.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_wakeup_cell.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_sync_cell.v
+read_verilog /home/vsduser/vsdsynth/verilog/omsp_dbg_uart.v
+hierarchy -check
