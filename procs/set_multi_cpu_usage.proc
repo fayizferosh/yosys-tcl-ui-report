@@ -1,0 +1,36 @@
+#!/bin/tclsh
+
+proc set_multi_cpu_usage {args} {
+        array set options {-localCpu <num_of_threads> -help "" }
+        #foreach {switch value} [array get options] {
+	#	puts "Info: Option $switch is $value. For user debug."
+        #}
+        while {[llength $args]} {
+        	#puts "Info: llength is [llength $args]. For user debug."
+        	#puts "Info: lindex 0 of \"$args\" is [lindex $args 0]. For user debug."
+                switch -glob -- [lindex $args 0] {
+                	-localCpu {
+				#puts "Info: old args is $args. For user debug."
+				set args [lassign $args - options(-localCpu)]
+				#puts "Info: new args is \"$args\". For user debug."
+				puts "set_num_threads $options(-localCpu)"
+			}
+                	-help {
+				#puts "Info: old args is $args. For user debug."
+				set args [lassign $args - options(-help) ]
+				#puts "Info: new args is \"$args\". For user debug."
+				puts "Usage: set_multi_cpu_usage -localCpu <num_of_threads> -help"
+				puts "\t-localCpu - To limit CPU threads used"
+				puts "\t-help - To print usage"
+                      	}
+                }
+        }
+}
+
+# User test examples
+#puts "\nInfo: Running 'set_multi_cpu_usage -localCpu 3'. For user debug."
+#set_multi_cpu_usage -localCpu 3
+#puts "\nInfo: Running 'set_multi_cpu_usage -help'. For user debug."
+#set_multi_cpu_usage -help
+#puts "\nInfo: Running 'set_multi_cpu_usage -localCpu 3 -help'. For user debug."
+#set_multi_cpu_usage -localCpu 3 -help

@@ -1,0 +1,8 @@
+#!/bin/tclsh
+
+# proc to redirect screen log to file
+proc reopenStdout {file} {
+    close stdout
+    open $file w       
+}
+
