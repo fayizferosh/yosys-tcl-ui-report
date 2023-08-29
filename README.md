@@ -660,3 +660,11 @@ if { $error_flag } {
 ```
 
 *Screenshots*
+
+## Day 5 - Advanced Scripting Techniques and Quality of Results Generation (27/08/2023)
+
+Day 5 task is to run main synthesis in yosys, learn about procs and use it in an application level creating commands, write necesserary files required for OpenTimer tool such as .conf - .spef - .timing, write OpenTimer script, run OpenTimer STA, collect required data to form QoR from .results file generated from OpenTimer STA run & finally print the collected data in a tool standard QoR output format.
+
+### Implementation
+
+I have sucessfully coded all the required elements to achieve Day 5 tasks and all the details of sub-task achieved are shown below.
