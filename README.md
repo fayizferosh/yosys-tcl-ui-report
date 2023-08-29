@@ -432,6 +432,15 @@ while { $i < $end_of_inputs } {
 ![Screenshot from 2023-08-27 00-15-11](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/19e7ccfe-3fc0-4b91-b9da-f09910570204)
 ![Screenshot from 2023-08-27 00-16-01](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c93a1551-c951-4714-9ac2-c974b9425b99)
 ![Screenshot from 2023-08-27 00-14-56](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/e73aee2d-a63b-4937-89ff-d7d7d21b1abe)
+
+/tmp/1 and /tmp/2 file screenshots for bussed port
+
+![Screenshot from 2023-08-29 15-47-50](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/626396d2-fb93-47e7-931f-e75546397972)
+![Screenshot from 2023-08-29 15-47-30](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/8c27a27e-7693-4017-9f35-52e35ee59dde)
+
+
+/tmp/1 and /tmp/2 file screenshots for bussed port
+
 ![Screenshot from 2023-08-29 15-42-44](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/e16d45ea-24ee-47c2-baf9-e90a35134bc6)
 ![Screenshot from 2023-08-29 15-42-57](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/b7b0e600-7dc5-492f-87d4-27b8fa16f7e0)
 
