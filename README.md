@@ -24,9 +24,16 @@ Comments
 ![Screenshot (264)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/dcf3a9f9-2281-4d6f-b318-a52ddea1fb7d)
 ![Screenshot (265)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/6194ce14-1cf5-41c2-9de3-6938f205f912)
 
+## Requirements
+
+-Linux OS
+-Yosys Synthesis Suite
+-OpenTimer STA Tool
+-TCL Matrix Package
+
 ## Usage
 
-Clone the repo and in the directory in bash terminal run `./yosysui openMSP430_design_details.csv` and then design '*openMSP430*' Yosys synthesis and OpenTimer STA will be run and at the end you will recieve '*PRELAYOUT TIMING RESULTS*' as illustrated in above images. 
+Clone the repo and in the directory in bash terminal run `./yosysui openMSP430_design_details.csv` and then design '*openMSP430*' Yosys synthesis and OpenTimer STA will be run and at the end you will recieve '*PRELAYOUT TIMING RESULTS*' as illustrated in above images. (Before running make sure to edit the procs paths in script and OpenTimer tool path as well to your local paths)
 
 ***Note: The screenshots in following sections are purely based on the 'yosysui.tcl' script that I have uploaded and is not a direct output of the code snippet of corresponding section. The code snippets contains only the crucial portions of the 'yosysui.tcl' script required to execute the tasks mentioned in the respective sections.***
 
