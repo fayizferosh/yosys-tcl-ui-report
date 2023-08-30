@@ -1564,5 +1564,5 @@ puts "\n"
 ![Screenshot from 2023-08-29 19-47-53](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/2f937ddf-ef8d-46ea-8e08-15272fab4944)
 ![Screenshot from 2023-08-29 19-48-16](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/630a39fe-710e-44aa-85d5-29f19e833734)
 
-## Acknowledgements
+# Acknowledgements
 * [Kunal Ghosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
