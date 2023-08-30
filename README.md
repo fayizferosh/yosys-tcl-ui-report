@@ -33,7 +33,8 @@ Comments
 
 ## Usage
 
-Clone the repo and in the directory in bash terminal run `./yosysui openMSP430_design_details.csv` and then design '*openMSP430*' Yosys synthesis and OpenTimer STA will be run and at the end you will recieve '*PRELAYOUT TIMING RESULTS*' as illustrated in above images. (Before running make sure to edit the procs paths in script and OpenTimer tool path as well to your local paths)
+* Clone the repo and in the directory in bash terminal run `./yosysui openMSP430_design_details.csv` and then design '*openMSP430*' Yosys synthesis and OpenTimer STA will be run and at the end you will recieve '*PRELAYOUT TIMING RESULTS*' as illustrated in above images. (Before running make sure to edit the procs paths in script and OpenTimer tool path as well to your local paths)
+* You can also type in `./yosysui -help` wherein the command give you a usage guide to help explore it's functionalities.
 
 ***Note: The screenshots in following sections are purely based on the 'yosysui.tcl' script that I have uploaded and is not a direct output of the code snippet of corresponding section. The code snippets contains only the crucial portions of the 'yosysui.tcl' script required to execute the tasks mentioned in the respective sections.***
 
