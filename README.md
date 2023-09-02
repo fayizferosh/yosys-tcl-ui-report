@@ -19,7 +19,7 @@
 Comments
 -->
 
-> 5 Day TCL training workshop by VSD using Yosys and Opentimer open-source eda tools and TCL to generate a report from a design wherein the input is design file paths in .csv format to the tcl program. The final objective by day 5 is to give design details namely paths of design data to the "TCL BOX" which is the UI being designed which runs the design in Yosys and Opentimer open-source eda tools and returns a report of the design.
+> 5 day TCL training workshop by VSD using Yosys and Opentimer open-source EDA tools and TCL to generate a report from a design, wherein the input is design file paths in .csv format to the TCL program. The final objective by day 5 is to give design details, namely paths of design data, to the "TCL BOX", which is the UI being designed, which runs the design in Yosys and Opentimer open-source EDA tools and returns a report of the design.
 
 ![Screenshot (264)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/dcf3a9f9-2281-4d6f-b318-a52ddea1fb7d)
 ![Screenshot (265)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/6194ce14-1cf5-41c2-9de3-6938f205f912)
@@ -33,14 +33,14 @@ Comments
 
 ## Usage
 
-* Clone the repo and in the directory in bash terminal run `./yosysui openMSP430_design_details.csv` and then design '*openMSP430*' Yosys synthesis and OpenTimer STA will be run and at the end you will recieve '*PRELAYOUT TIMING RESULTS*' as illustrated in above images. (Before running make sure to edit the procs paths in script and OpenTimer tool path as well to your local paths)
-* You can also type in `./yosysui -help` wherein the command give you a usage guide to help explore it's functionalities.
+* Clone the repo, and in the directory in the bash terminal, run `./yosysui openMSP430_design_details.csv` and then design '*openMSP430*. Yosys synthesis and OpenTimer STA will be run, and at the end you will receive '*PRELAYOUT TIMING RESULTS*' as illustrated in the above images. (Before running, make sure to edit the procs paths in the script and the OpenTimer tool path, as well as your local paths)
+* You can also type in `./yosysui -help`, wherein the command gives you a usage guide to help explore its functionalities.
 
-***Note: The screenshots in following sections are purely based on the 'yosysui.tcl' script that I have uploaded and is not a direct output of the code snippet of corresponding section. The code snippets contains only the crucial portions of the 'yosysui.tcl' script required to execute the tasks mentioned in the respective sections.***
+***Note: The screenshots in the following sections are purely based on the 'yosysui.tcl' script that I have uploaded and are not a direct output of the code snippet in the corresponding section. The code snippets contain only the crucial portions of the 'yosysui.tcl' script required to execute the tasks mentioned in the respective sections.***
 
 ## Day 1 - Introduction to TCL and VSDSYNTH Toolbox Usage (23/08/2023)
 
-Day 1 task is to create command (in my case ***yosysui***) and pass .csv file from UNIX shell to TCL script taking into consideration mainly 3 general scenarios from user point of view.
+Day 1's task is to create a command (in my case, ***yosysui***) and pass a .csv file from the UNIX shell to the TCL script, taking into consideration mainly three general scenarios from the user's point of view.
 
 ![Screenshot 2023-08-24 183526](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/a1c31fb3-a8e5-4a7e-987d-3d7e6ff4ad65)
 
@@ -54,7 +54,7 @@ Day 1 task is to create command (in my case ***yosysui***) and pass .csv file fr
 
 ### Implementation
 
-Creation of *yosysui* command script and *yosysui.tcl* files.
+Creation of the *yosysui* command script and *yosysui.tcl* files.
 
 ![Screenshot from 2023-08-24 19-28-08](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/53d902f7-9ec4-4a8f-a2cd-683f74a7ca2f)
 
@@ -62,7 +62,7 @@ Creation of *yosysui* command script and *yosysui.tcl* files.
 
 ![Screenshot from 2023-08-24 19-36-52](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/c0e5a04d-2d6b-40ea-bcd1-9bd76be60116)
 
-Basic structure of bash code used for implementation of general scenarios.
+The basic structure of bash code used for the implementation of general scenarios is shown below.
 
 ```bash
 # Tool Initialisation
@@ -107,7 +107,7 @@ else
 fi
 ```
 
-In my command ***yosysui*** I have implemented a total of *5 general scenarios* from user point of view in the bash script.
+In my command ***yosysui***, I have implemented a total of *5 general scenarios* from the user's point of view in the bash script.
 
 #### 1. No input file provided
 
@@ -131,7 +131,7 @@ In my command ***yosysui*** I have implemented a total of *5 general scenarios* 
 
 ## Day 2 - Variable Creation and Processing Constraints from CSV (24/08/2023)
 
-Day 2 task is to basically write the TCL code in *yosysui.tcl* for variable creation, file/directory existance check and the processing of the constraints csv file to convert it into format[1] (which is the constraints format taken as input by Yosys tool) and as well as into SDC (Synopsys Design Constraints) format (which is the industry standard format).
+Day 2's task is to basically write the TCL code in *yosysui.tcl* for variable creation, file/directory existence check, and the processing of the constraints csv file to convert it into format[1] (which is the constraints format taken as input by Yosys tool) as well as into SDC (Synopsys Design Constraints) format (which is the industry standard format).
 
 ![Screenshot (266)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/43c630e2-0f02-4a38-b5c4-5d61d098ce62)
 
@@ -141,7 +141,7 @@ Day 2 task is to basically write the TCL code in *yosysui.tcl* for variable crea
 
 ### Implementation
 
-I have successfully completed Day 2 tasks namely variable creation, file/directory existance check and the processing of the constraints csv file.
+I have successfully completed Day 2 tasks, namely variable creation, file and directory existence checks, and the processing of the constraints csv file.
 
 **yosysui.tcl snapshot**
 
@@ -149,7 +149,7 @@ I have successfully completed Day 2 tasks namely variable creation, file/directo
 
 #### Variable Creation
 
-I have auto created the variables (*have used special condition to identify design name*) from the csv file by converting it into a matrix and then to an array (*also added command to capture start time of script so that it can be used to calculate runtime at the end*). The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
+I have auto-created the variables (*have used special condition to identify design name*) from the csv file by converting it into a matrix and then to an array (*also added command to capture the start time of the script so that it can be used to calculate runtime at the end*). The basic code of the same and a screenshot of the terminal with several "puts" printing out the variables are shown below.
 
 *Code*
 
@@ -202,14 +202,14 @@ while {$i < $nrdcsv} {
 
 ![Screenshot from 2023-08-25 23-24-20](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/88934e7b-89f1-4557-a186-cc23816ce5d9)
 
-#### File / Directory Existance Check
+#### File / Directory Existence Check
 
-I have written the code to check the existance of all files and directories wherein the program exits incase it is not found since, these files and directories existance are crucial for the program to move further except for output directory which is created if not existing. The basic code of the same and screenshots of terminal demonstrating the functionality namely one showing creation od new output directory and another in which output directory exist but constraints file does not exist are shown below.
+I have written the code to check the existence of all files and directories wherein the program exits in case they are not found since their existence is crucial for the program to move further except for the output directory, which is created if it does not exist. The basic code of the same and screenshots of the terminal demonstrating the functionality, namely one showing the creation of a new output directory and another in which an output directory exists but a constraints file does not exist, are shown below.
 
 *Code*
 
 ```tcl
-# File/Directory existance check
+# File/Directory existence check
 # ------------------------------
 # Checking if output directory exists if not creates one
 if { ![file isdirectory $Output_Directory] } {
@@ -259,7 +259,7 @@ if { ![file exists $Constraints_File] } {
 
 #### Processing of the constraints openMSP430_design_constraints.csv file
 
-The file was successfully processesed and converted into matrix and the rows and columns count were extracted as well as starting rows of clocks, inputs and outputs were also extracted. The basic code of the same and screenshot of terminal with several "puts" printing out the variables are shown below.
+The file was successfully processed and converted into a matrix, and the rows and columns count were extracted, as well as the starting rows of clocks, inputs, and outputs. The basic code of the same and a screenshot of the terminal with several "puts" printing out the variables are shown below.
 
 *Code*
 
@@ -292,7 +292,7 @@ set outputs_start [lindex [lindex [m1 search all OUTPUTS] 0] 1]
 
 ## Day 3 - Processing Clock and Input Constraints from CSV and dumping SDC (26/08/2023)
 
-Day 3 task is to basically processing constraints csv file for clocks and inputs and dupming SDC commands to .sdc file with actual processed data. It involves several matrix search algorithms and also an algorithm to identify inputs which are buses and bits differently.
+Day 3's task is to basically process constraints in a csv file for clocks and inputs and dump SDC commands into a .sdc file with actual processed data. It involves several matrix search algorithms and also an algorithm to identify inputs that are buses and bits differently.
 
 **Review of input file - openMSP430_design_constraints.csv**
 
@@ -300,11 +300,11 @@ Day 3 task is to basically processing constraints csv file for clocks and inputs
 
 ### Implementation
 
-I have successfully completed Day 3 tasks namely processing constraints csv file for clocks and inputs and dupming SDC commands to .sdc file with actual processed data.
+I have successfully completed Day 3 tasks, namely processing constraints in a csv file for clocks and inputs and dumping SDC commands into a .sdc file with actual processed data.
 
 #### Processing of the constraints .csv file for CLOCKS and dumping SDC commands to .sdc
 
-I have successfully processed the csv file for CLOCKS data and dumped clock based SDC commands (*with unique clock names adding "_yui" to SDC create_clock command*) to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
+I have successfully processed the csv file for CLOCKS data and dumped clock-based SDC commands (*with unique clock names by adding "_yui" to the SDC create_clock command*) to .sdc file. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
 
 *Code*
 
@@ -369,7 +369,7 @@ while { $i < $end_of_clocks } {
 
 #### Processing of the constraints .csv file for INPUTS and dumping SDC commands to .sdc
 
-I have successfully processed the csv file for INPUTS data as well as differentiated bit and bus inputs and dumped inputs based SDC commands to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
+I have successfully processed the csv file for INPUTS data as well as differentiated bit and bus inputs and dumped input-based SDC commands to .sdc file. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
 
 *Code*
 
@@ -479,7 +479,7 @@ while { $i < $end_of_inputs } {
 
 ## Day 4 - Complete Scripting and Yosys Synthesis Introduction (26/08/2023)
 
-Day 4 task included the outputs section processing and dumping of SDC file, sample yosys synthesis using example memory and explanation, yosys hierarchy check and it's error handling.
+Day 4's tasks included the output section processing and dumping of the SDC file, sample Yosys synthesis using example memory and explanation, Yosys hierarchy check, and its error handling.
 
 **Review of input file - openMSP430_design_constraints.csv**
 
@@ -487,11 +487,11 @@ Day 4 task included the outputs section processing and dumping of SDC file, samp
 
 ### Implementation
 
-I have successfully completed Day 4 tasks namely processing constraints csv file for outputs and dupming SDC commands to .sdc file with actual processed data, learned sample memory synthesis and it's memory write and read process, dumped hierarchy check yosys script and wrote code handling errors in herarchy check.
+I have successfully completed Day 4 tasks, namely processing constraints csv file for outputs and dumping SDC commands to .sdc file with actual processed data; learning sample memory synthesis and its memory write and read processes; dumping the hierarchy check Yosys script; and writing code handling errors in hierarchy check.
 
 #### Processing of the constraints .csv file for OUTPUTS and dumping SDC commands to .sdc
 
-I have successfully processed the csv file for OUTPUTS data as well as differentiated bit and bus outputs and dumped outputs based SDC commands to .sdc file. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
+I have successfully processed the csv file for OUTPUTS data as well as differentiated bit and bus outputs and dumped output-based SDC commands to .sdc file. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information as well as output .sdc are shown below.
 
 *Code*
 
@@ -580,7 +580,7 @@ puts "\nInfo-SDC: SDC created. Please use constraints in path $Output_Directory/
 
 #### Memory module yosys synthesis and explanation
 
-The verilog code *memory.v* for a single bit address and single bit data memory unit is given below.
+The verilog code *memory.v* for a single-bit address and single-bit data memory unit is given below.
 
 *Code*
 
@@ -603,7 +603,7 @@ always @(posedge CLK) begin
 endmodule
 ```
 
-The basic yosys script *memory.ys* to run this and obtain a gate-level netlist and 2D representation of the memory module in gate components is provided below.
+The basic Yosys script *memory.ys* to run this and obtain a gate-level netlist and 2D representation of the memory module in gate components is provided below.
 
 *Script*
 
@@ -633,7 +633,7 @@ The output view of netlist from the code is shown below.
 
 *Memory write process explained in following images using truth table*
 
-Basic illustration of write process
+Basic illustration of the write process
 
 ![Screenshot (268)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/44d4b869-a861-41c6-90a0-4d2e9a0ff38c)
 
@@ -647,7 +647,7 @@ After first rising edge of the clock - write process done
 
 *Memory read process explained in following images using truth table*
 
-Basic illustration of read process
+Basic illustration of the read process
 
 ![Screenshot (269)](https://github.com/fayizferosh/yosys-tcl-ui-report/assets/63997454/2dff99ae-b568-4b7a-93ac-78cfa112a9ed)
 
@@ -661,7 +661,7 @@ After second rising edge of the clock - read process done
 
 #### Hierarchy check script dumping
 
-I have successfully written the code for dumping hierarchy check script. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information as well as output .hier.ys are shown below.
+I have successfully written the code for dumping the hierarchy check script. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information as well as output .hier.ys are shown below.
 
 *Code*
 
@@ -693,7 +693,7 @@ close $fileId
 
 #### Hierarchy Check Run & Error Handling
 
-I have successfully written the code for hierarchy check error handling in case any error pops up during hierarchy check run in yosys and *exits if hierarchy check fails*. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
+I have successfully written the code for hierarchy check error handling in case any error pops up during hierarchy check run in Yosys and *exits if hierarchy check fails*. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information are shown below.
 
 *Code*
 
@@ -739,15 +739,15 @@ if { $error_flag } {
 
 ## Day 5 - Advanced Scripting Techniques and Quality of Results (QoR) Generation (27/08/2023)
 
-Day 5 task is to run main synthesis in yosys, learn about procs and use it in an application level creating commands, write necesserary files required for OpenTimer tool such as .conf - .spef - .timing, write OpenTimer script, run OpenTimer STA, collect required data to form QoR from .results file generated from OpenTimer STA run & finally print the collected data in a tool standard QoR output format.
+Day 5's tasks are to run main synthesis in Yosys, learn about procs and use them at the application level, create commands, and write necessary files required for the OpenTimer tool, such as .conf - .spef - .timing, write an OpenTimer script, run an OpenTimer STA, and collect the required data to form QoR from .results file generated from OpenTimer STA run and finally print the collected data in a tool-standard QoR output format.
 
 ### Implementation
 
-I have sucessfully coded all the required elements to achieve Day 5 tasks and all the details of sub-task achieved are shown below.
+I have successfully coded all the required elements to achieve Day 5 tasks, and all the details of the sub-tasks achieved are shown below.
 
-#### Main yosys synthesis script dumping
+#### Main Yosys synthesis script dumping
 
-I have successfully written the code for main yosys synthesis script .ys file and dumped the script. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
+I have successfully written the code for the main Yosys synthesis script .ys file and dumped the script. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information are shown below.
 
 *Code*
 
@@ -786,7 +786,7 @@ puts "\nInfo: Synthesis script created and can be accessed from path $Output_Dir
 
 #### Running main synthesis script & error handling
 
-I have successfully written the code for running main yosys synthesis script and exiting if errors are found. The basic code of the same and screenshots of terminal are shown below.
+I have successfully written the code for running the main Yosys synthesis script and exiting if errors are found. The basic code and screenshots of the terminal are shown below.
 
 *Code*
 
@@ -814,7 +814,7 @@ puts "\nInfo: Please refer to log $Output_Directory/$Design_Name.synthesis.log"
 
 #### Editing .synth.v to be usable by OpenTimer
 
-I have successfully written the code to edit the main synthesis output netlist .synth.v to make it usable for OpenTimer and other STA and PnR needs by replacing lines with "*" as a word and by removing "\" from any and all lines that have it. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
+I have successfully written the code to edit the main synthesis output netlist .synth.v to make it usable for OpenTimer and other STA and PnR needs by replacing lines with "*" as a word and by removing "\" from any and all lines that have it. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information are shown below.
 
 *Code*
 
@@ -855,11 +855,11 @@ puts "\nPath: $Output_Directory/$Design_Name.final.synth.v"
 
 #### World of Procs (TCL Procedure)
 
-Procs can be used to create user defined commands as shown below. I have successfully written the code for all the procs. The basic codes of the all the procs and screenshots of terminal with several "puts" printing out the variables and user debug information for 'set_multi_cpu_usage' and 'read_sdc' proc are shown below.
+Procs can be used to create user-defined commands, as shown below. I have successfully written the code for all the procs. The basic codes of all the procs and screenshots of the terminal with several "puts" printing out the variables and user debug information for the 'set_multi_cpu_usage' and the 'read_sdc' procs are shown below.
 
 ##### reopenStdout.proc
 
-This proc redirects the 'stdout' screen log to argument file.
+This proc redirects the 'stdout' screen log to the file in the proc's argument.
 
 *Code*
 
@@ -875,7 +875,7 @@ proc reopenStdout {file} {
 
 ##### set_multi_cpu_usage.proc
 
-This proc outputs multiple threads of cpu usage command required for OpenTimer tool.
+This proc outputs multiple threads of the CPU usage command required for the OpenTimer tool.
 
 *Code*
 
@@ -907,7 +907,7 @@ proc set_multi_cpu_usage {args} {
 
 ##### read_lib.proc
 
-This proc outputs commands to read early and late libraries required for OpenTimer tool.
+This proc outputs commands to read early and late libraries required for the OpenTimer tool.
 
 *Code*
 
@@ -942,7 +942,7 @@ proc read_lib args {
 
 ##### read_verilog.proc
 
-This proc outputs commands to read synthesised netlist required for OpenTimer tool.
+This proc outputs commands to read the synthesised netlist required for the OpenTimer tool.
 
 *Code*
 
@@ -957,11 +957,11 @@ proc read_verilog {arg1} {
 
 ##### read_sdc.proc
 
-This proc outputs commands to read constraints .timing file required for OpenTimer tool. This procs converts SDC file contents to .timing file format for use by OpenTimer tools and the convertion code is explained stage by stage with sufficient screenshots.
+This proc outputs commands to read constraints .timing file required for the OpenTimer tool. This procs converts SDC file contents to .timing file format for use by the OpenTimer tool, and the conversion code is explained stage by stage with sufficient screenshots.
 
 ###### Converting 'create_clock' constraints
 
-Initially the proc takes SDC file as input argument or parameter and processes 'create_clock' constaint part of SDC.
+Initially, the proc takes the SDC file as an input argument or parameter and processes the 'create_clock' constraints part of SDC.
 
 *Code*
 
@@ -1012,7 +1012,7 @@ close $tmp_file
 
 ###### Converting 'set_clock_latency' constraints
 
-Processes 'set_clock_latency' constaint part of SDC.
+Processes 'set_clock_latency' constraints part of SDC.
 
 *Code*
 
@@ -1054,7 +1054,7 @@ close $tmp2_file
 
 ###### Converting 'set_clock_transition' constraints
 
-Processes 'set_clock_transition' constaint part of SDC.
+Processes 'set_clock_transition' constraints part of SDC.
 
 *Code*
 
@@ -1096,7 +1096,7 @@ close $tmp2_file
 
 ###### Converting 'set_input_delay' constraints
 
-Processes 'set_input_delay' constaint part of SDC.
+Processes 'set_input_delay' constraints part of SDC.
 
 *Code*
 
@@ -1137,7 +1137,7 @@ close $tmp2_file
 
 ###### Converting 'set_input_transition' constraints
 
-Processes 'set_input_transition' constaint part of SDC.
+Processes 'set_input_transition' constraints part of SDC.
 
 *Code*
 
@@ -1179,7 +1179,7 @@ close $tmp2_file
 
 ###### Converting 'set_output_delay' constraints
 
-Processes 'set_output_delay' constaint part of SDC.
+Processes 'set_output_delay' constraints part of SDC.
 
 *Code*
 
@@ -1221,7 +1221,7 @@ close $tmp2_file
 
 ###### Converting 'set_load' constraints
 
-Processes 'set_load' constaint part of SDC. And with that all SDC constarints are processed and so we close the /tmp/3 file containing all processed data for now.
+Processes 'set_load' constraints part of SDC. And with that, all SDC constarints are processed, so we close the /tmp/3 file containing all processed data for now.
 
 *Code*
 
@@ -1265,7 +1265,7 @@ close $timing_file
 
 ###### Expanding the bussed input and output ports
 
-/tmp/3 file contains bussed ports as <port_name>* which is expanded to it's each bits and single bit ports lines are untouched and this new content is dumped to .timing file and then the proc exits by giving output the OpenTimer command to access this .timing file.
+The /tmp/3 file contains bussed ports as <port_name>*, which is expanded to each bit, and single-bit port lines are untouched. This new content is dumped to .timing file, and then the proc exits by giving output the OpenTimer command to access this .timing file.
 
 *Code*
 
@@ -1312,7 +1312,7 @@ puts "set_timing_fpath $sdc_dirname/$sdc_filename.timing"
 
 #### Using the procs to write .conf
 
-I have successfully written the code to use these procs on an application level and create some portion of the .conf configuration file required for OpenTimer tool. The basic code of the same and screenshots of terminal and .conf are shown below.
+I have successfully written the code to use these procs on an application level and create some portion of the .conf configuration file required for the OpenTimer tool. The basic code of the same and screenshots of terminal and .conf are shown below.
 
 *Code*
 
@@ -1353,7 +1353,7 @@ close $Output_Directory/$Design_Name.conf
 
 #### Preparation of rest of .conf & .spef files for OpenTimer STA
 
-I have successfully written the code to write .spef *with current date and time in the spef code* and to append rest of the portion of .conf file. The basic code of the same and screenshots of terminal and .conf and .spef are shown below.
+I have successfully written the code to write .spef *with the current date and time in the spef code* and to append the rest of the portion of .conf file. The basic code of the same and screenshots of terminal, .conf and .spef are shown below.
 
 *Code*
 
@@ -1410,7 +1410,7 @@ close $conf_file
 
 #### STA using OpenTimer
 
-I have successfully written the code to run STA on OpenTimer and to capture its runtime. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
+I have successfully written the code to run STA on OpenTimer and capture its runtime. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information are shown below.
 
 *Code*
 
@@ -1439,7 +1439,7 @@ puts "\nInfo: Refer to $Output_Directory/$Design_Name.results for warnings and e
 
 #### Data collection from .results file and other sources for QoR
 
-I have successfully written the code to collect all required datas to specific codes and *also have collected total .tcl script runtime*. The basic code of the same and screenshots of terminal with several "puts" printing out the variables and user debug information are shown below.
+I have successfully written the code to collect all required data for specific codes and *have also collected total .tcl script runtime*. The basic code of the same and screenshots of the terminal with several "puts" printing out the variables and user debug information are shown below.
 
 *Code*
 
@@ -1539,7 +1539,7 @@ set time_elapsed_in_sec "[expr {($end_time-$start_time)/1000000}]sec"
 
 #### QoR (Quality of Results) Generation
 
-I have successfully written the code for QoR generation. The basic code of the same and screenshots of terminal are shown below.
+I have successfully written the code for QoR generation. The basic code and screenshots of the terminal are shown below.
 
 *Code*
 
